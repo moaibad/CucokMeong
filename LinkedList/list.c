@@ -6,7 +6,8 @@
 /* Prototype Linear List */
 /* Konstruktor membentuk List */
 void CreateList (List *L){
-	First(*L)=Nil;
+	First(*L) = Nil;
+	Last(*L) = Nil;
 }
 
 /* Destruktor/Dealokator: */
@@ -20,6 +21,7 @@ address Alokasi (infotype X){
 	else{
 		Info(P) = X;
 		Next(P) = Nil;
+		Prev(P) = Nil;
 		return P;
 	}	
 }
@@ -28,7 +30,7 @@ void DeAlokasi (address P){
 	free(P);
 }
 
-boolean ListEmpty(List L){
+boolean isEmpty(List L){
 
 	if(First(L)==Nil){
 		return true;
@@ -64,7 +66,7 @@ void InsLast (List * L, infotype X){
 void InsAfter (List * L, infotype X, infotype Y){
 	address P,Q;
 	P = Alokasi (X);
-	Q = Search(*L,Y);
+	//Q = Search(*L,Y);
 	
 	if(Q != Nil){
 		Next(P) = Next(Q) ;
@@ -101,7 +103,7 @@ void DelLast (List *L, infotype *X){
 void DelAfter (List * L, infotype *X, infotype Y){
 	address P,Q;
 	
-	Q = Search(*L,Y);
+	//Q = Search(*L,Y);
 	if(Q != Nil){
 		Q = Next(P);
 		Next(P) = Next(Q) ;
@@ -110,7 +112,6 @@ void DelAfter (List * L, infotype *X, infotype Y){
 	}else{
 		printf("Lokasi tidak ditemukan");
 	}
-	
 }
 
 /*Menampilkan Elemen*/
@@ -122,10 +123,22 @@ void PrintInfo (List L){
       printf("List kosong\n");
     } else {
       while (Next(P) != Nil) {
-        printf("%d,",Info(P));
+        printf("%s,",P->info.petName);
         P = Next(P);
       }
-      printf("%d\n", Info(P));
+      printf("%s",P->info.petName);
+    }
+    
+    printf("\n");
+    P = Last(L);
+    if (P == Nil) {
+      printf("List kosong\n");
+    } else {
+      while (Prev(P) != Nil) {
+        printf("%s,",P->info.petName);
+        P = Prev(P);
+      }
+      printf("%s",P->info.petName);
     }
 }
 
@@ -134,20 +147,35 @@ void PrintInfo (List L){
 /** KELOMPOK OPERASI LAIN TERHADAP TYPE **/
 int NbElmt (List L);
 // Mengirimkan banyaknya elemen List atau mengirimkan 0 jika List kosong
-address Search (List L, infotype X){
+
+address Search (List L, int priority){
 	address P;
 	boolean Found;
 	
-	P = First(L);
+	P = Last(L);
 	Found = false;
-	while((P != Nil) && (!Found)){
-		if (X == Info(P)){
+	while((P != Nil) && (Found == false)){
+		printf("\nPriority P = %d\n",P->info.priority);
+		if (priority == P->info.priority){
 			Found = true;
-		} else {
-			P = Next(P);
+		}else {
+			P = Prev(P);
 		}
 	}
-	return P;
+	
+	if(P!=Nil){
+		printf("\nPriority P = %d\n",P->info.priority);
+	}
+	
+	if(Found == true){
+		printf("\n%d ketemu\n",priority );
+		return P;
+	}
+	else{
+		printf("\n%d tidak ketemu\n",priority );
+		return Nil;
+	}
+	
 }
 
 void DelAll (List *L) {

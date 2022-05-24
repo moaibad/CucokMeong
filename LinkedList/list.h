@@ -13,7 +13,9 @@ Tanggal :
 #define Nil NULL
 #define Info(P) (P)->info
 #define Next(P) (P)->next
+#define Prev(P) (P)->prev
 #define First(L) (L).First
+#define Last(L) (L).Last
 /** Definisi ABSTRACT DATA TYPE List **/
 /*Definisi List :*/
 /* List kosong ===> First (L) =Nil
@@ -21,13 +23,27 @@ Setiap elemen dengan address P dapat diacu info (P) dan Next (P);
 Elemen terakhir list ===> Jika addressnya Last maka Next (Last) = Nil
 */
 typedef struct tElmtList *address; // pointer menunjuk ke alamat tElmtList
-typedef int infotype;
+
+typedef struct {
+	char petName[20];
+	char petOwner[20];
+	int arrivalTime;
+	int startTime;
+	int finishTime;
+	int serviceTime;
+	int priority;
+	int diseaseList[9];
+}infotype;
+
 typedef struct tElmtList{
-infotype info;
-address next;
+	infotype info;
+	address next;
+	address prev;
 } ElmtList;
+
 typedef struct{
-address First;
+	address First;
+	address Last;
 } List;
 //======================================================================
 /* Prototype Linear List */
@@ -51,7 +67,7 @@ Melakukan dealokasi/ pengembalian address P ke system
 //========================================================================
 /** { KELOMPOK OPERASI Cek Elemen kosong atau penuh} **/
 
-boolean ListEmpty(List L);
+boolean isEmpty(List L);
 // mengecek apakah jumlah elemen pada List kosong
 // mengirimkan true jika List kosong, mengirimkan false jika tidak
 //=========================================================================
@@ -107,7 +123,7 @@ kosong?
 /** KELOMPOK OPERASI LAIN TERHADAP TYPE **/
 int NbElmt (List L);
 // Mengirimkan banyaknya elemen List atau mengirimkan 0 jika List kosong
-address Search (List L, infotype X);
+address Search (List L, int priority);
 /* Mencari apakah ada elemen list dengan Info (P)= X
 Jika ada, mengirimkan address elemen tersebut yang pertama kali ditemukan.
 jika tidak ada, mengirimkan Nil
