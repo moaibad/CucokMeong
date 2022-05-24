@@ -123,23 +123,27 @@ void PrintInfo (List L){
       printf("List kosong\n");
     } else {
       while (Next(P) != Nil) {
-        printf("%s,",P->info.petName);
+        printf("Nama Hewan : %s durasi : %d ",P->info.petName,P->info.serviceTime);
+        printf("Start : %d ",P->info.startTime);
+        printf("End : %d,",P->info.finishTime);
         P = Next(P);
       }
-      printf("%s",P->info.petName);
+       printf("Nama Hewan : %s durasi : %d ",P->info.petName,P->info.serviceTime);
+       printf("Start : %d ",P->info.startTime);
+       printf("End : %d",P->info.finishTime);
     }
     
-    printf("\n");
-    P = Last(L);
-    if (P == Nil) {
-      printf("List kosong\n");
-    } else {
-      while (Prev(P) != Nil) {
-        printf("%s,",P->info.petName);
-        P = Prev(P);
-      }
-      printf("%s",P->info.petName);
-    }
+    //printf("\n");
+   // P = Last(L);
+    //if (P == Nil) {
+   //   printf("List kosong\n");
+   // } else {
+   //   while (Prev(P) != Nil) {
+   //     printf("%s,",P->info.petName);
+    //    P = Prev(P);
+   //   }
+   //   printf("%s",P->info.petName);
+   // }
 }
 
 //=========================================================================

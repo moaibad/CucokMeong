@@ -6,19 +6,20 @@
 
 void tambahAntrian(infotype *info){
 	char petName[20];
-	
+	int i = 0;
+	printf("Pet Name :");
 	scanf("%s",&info->petName);
 	//scanf("%s",&info->petOwner);
-	//scanf("%d",&info->arrivalTime);
+	printf("Arrival Time:");
+	scanf("%d",&info->arrivalTime);
 	info->startTime = 0;
 	info->finishTime = 0;
-	info->finishTime = 0;
 	info->serviceTime = 0;
-	for(int i = 0; i<9 ; i++){
+	for(i; i<9 ; i++){
 		info->diseaseList[i] = 0;	
 	}
-	
 	hitungPenyakit(&*info);
+	info->serviceTime = addTime(*info);
 	info->priority = hitungPrioritas(*info);
 }
 
@@ -26,17 +27,18 @@ void tambahAntrian(infotype *info){
 void hitungPenyakit(infotype *info){
 	int banyakPenyakit;
 	int pilihan;
+	printf("Banyak Penyakit :");
 	scanf("%d",&banyakPenyakit);
 
 	int i = 0;
 	//tampilkanDaftarPenyakit();
 	
 	while(i < banyakPenyakit){
+		printf("Jenis Penyakit :");
 		scanf("%d",&pilihan);
 		info->diseaseList[i] = pilihan;
 		i++;
 	}
-	
 }
 
 
@@ -82,6 +84,7 @@ int hitungPrioritas(infotype info){
 void antrianBaru(List *list,infotype info){
 	info.priority = hitungPrioritas(info);
 	insert(&*list, info);
+	checkTime(&*list);
 }
 
 
@@ -144,6 +147,53 @@ address moveLast(List list){
 	}
 	
 	return list.First;
+}
+
+int addTime(infotype info){
+	
+	int time = 0;
+	int ringan = 0;
+	int sedang = 0;
+	int berat = 0;
+	int i = 0;
+	
+	for (i = 0 ; i < 9 ; i ++){
+		if(info.diseaseList[i] == 1 || info.diseaseList[i] == 2 || info.diseaseList[i] == 3){
+			ringan ++;
+		}
+		if(info.diseaseList[i] == 4 || info.diseaseList[i] == 5 || info.diseaseList[i] == 6){
+			sedang ++;
+		}
+		if(info.diseaseList[i] == 7 || info.diseaseList[i] == 8 || info.diseaseList[i] == 9){
+			berat ++;
+		}
+	}
+	
+	time += ringan * 15;
+	time += sedang * 30;
+	time += berat * 45;
+	
+	printf ("%d\n",time);
+	printf ("%d\n",ringan);
+	printf ("%d\n",sedang);
+	printf ("%d\n",berat);
+	return time;
+}
+
+void checkTime(List *list){
+	address current = list->First;
+	if (list->First == list->Last){
+		current->info.startTime = current->info.arrivalTime;
+		current->info.finishTime = current->info.startTime + current->info.serviceTime;
+	}
+	else {
+		current = current->next;
+		while (current != Nil){
+		current->info.startTime = current->prev->info.finishTime;
+		current->info.finishTime = current->info.startTime + current->info.serviceTime;
+		current = current->next;
+	}
+	}
 }
 
 

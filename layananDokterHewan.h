@@ -8,4 +8,6 @@
 void hitungPenyakit(infotype *info);
 int hitungPrioritas(infotype info);
 address moveLast(List list);
+int addTime(infotype info);
+void checkTime(List *list);
 #endif
