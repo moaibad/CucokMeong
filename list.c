@@ -125,7 +125,7 @@ void PrintInfo (List L){
       while (Next(P) != Nil) {
         printf("Nama Hewan : %s durasi : %d ",P->info.petName,P->info.serviceTime);
         printf("Start : %d ",P->info.startTime);
-        printf("End : %d,",P->info.finishTime);
+        printf("End : %d\n",P->info.finishTime);
         P = Next(P);
       }
        printf("Nama Hewan : %s durasi : %d ",P->info.petName,P->info.serviceTime);
