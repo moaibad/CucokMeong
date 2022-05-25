@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 #include "layananDokterHewan.h"
 
 void Menu();
+void textGroup();
+void loading();
 
 int main(){
 	List list;
@@ -11,12 +14,11 @@ int main(){
 	
 	int pilihMenu;
 	
-	while(pilihMenu != 3){
+	textGroup();
+	loading();
+	
+	while(pilihMenu != 4){
 		system("cls");
-		printf("=======================");
-		printf("\nIsi List Sekarang : \n\n");
-		PrintInfo(list);
-		printf("\n=======================\n");
 		
 		Menu();
 		scanf("%d",&pilihMenu);
@@ -31,10 +33,12 @@ int main(){
 				getch();
 				break;
 
-			case 2 :
-				PrintInfo(list);
-
 			case 3 :
+				PrintInfo(list);
+				getch();
+				system("cls");
+
+			case 4 :
 				return 0;
 		}
 	}
@@ -43,10 +47,60 @@ int main(){
 }
 
 void Menu(){
-	printf("Pilih Menu Di bawah ini :\n\n");
-	printf("1. Tambah Antrian\n");
-	printf("2. Hapus Antrian\n");
-	printf("3. Keluar Program\n");
+	printf("\n\n\n\n\n\n\n\n");
+	printf("\t\t                         _________________________________________ \n");
+	printf("\t\t                        /_________________________________________\\ \n");
+	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n\n");
+	printf("\t\t\t\tPilih Menu Di bawah ini : \n");
+	printf("\t\t\t\t  [1] Registrasi \n");
+	printf("\t\t\t\t  [2] Panggil Antrian \n");
+	printf("\t\t\t\t  [3] Daftar Antrian \n");
+	printf("\t\t\t\t  [4] Exit \n\n");
+	printf("\t\t\t\tMasukkan Pilihan : ");
+}
 
-	printf("\nPilihan : ");
+void loading(){
+	int i =0;
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	printf("\t\t\t\t\tLoading ");
+	for (i=0 ; i <30; i++){
+		printf ("%c", 219);
+		Sleep (100);
+	}
+	system("cls");
+}
+
+const char cucokText[] =
+"\t\t    ______    __  __    ______    ______    __   __ \n\
+\t\t   /\\  ___\\  /\\ \\ \\ \\  /\\  ___\\  /\\  __ \\  /\\ \\_/ / \n\
+\t\t   \\ \\ \\____ \\ \\ \\_\\ \\ \\ \\ \\____ \\ \\ \\/\\ \\ \\ \\  _ \\ \n\
+\t\t    \\ \\_____\\ \\ \\_____\\ \\ \\_____\\ \\ \\_____\\ \\ \\_\\\\_\\ \n\
+\t\t     \\/_____/  \\/_____/  \\/_____/  \\/_____/  \\/_//_/       \n\
+";
+
+const char meongText[] =
+"\t\t\t\t    __________    ______    ______    __   __    ______ \n\
+\t\t\t\t   /\\  __  __ \\  /\\  ___\\  /\\  __ \\  /\\ \"-.\\ \\  /\\ \n\
+\t\t\t\t   \\ \\ \\ \\ \\ \\ \\ \\ \\  __\\  \\ \\ \\/\\ \\ \\ \\ \\-._ \\ \\ \\  ===\\ \n\
+\t\t\t\t    \\ \\_\\ \\_\\ \\_\\ \\ \\_____\\ \\ \\_____\\ \\ \\_\\\\ \\ \\ \\ \\_____\\ \n\
+\t\t\t\t     \\/_/ /_/ /_/  \\/_____/  \\/_____/  \\/_/ \\/_/  \\/_____/ \n\
+";
+
+
+void textGroup() {
+	int i, j;
+	
+    for ( i = 0; i < 200; i++) 
+		printf("\n"); 
+	
+	printf("%s\n", cucokText);
+	printf("%s\n", meongText);
+	
+    j = 350000;
+    for (i = 0; i < 30; i ++) {
+    	j = j * 0.9; 
+		usleep(j); 
+        printf("\n"); 
+    }
+    system("cls");
 }

@@ -100,7 +100,7 @@ void insert(List *list, infotype info){
 		list->First = P;
 		list->Last = P;
 	}
-	else if(reference != Nil && reference->info.priority != list->First->info.priority){
+	else if(reference != Nil && reference != list->First){
 		if(list->Last == reference){
 			reference->next = P;
 			P->prev = reference;
@@ -116,7 +116,7 @@ void insert(List *list, infotype info){
 	}
 	else{
 		if(list->First->next != Nil){
-			if(list->First->info.priority < P->info.priority && list->First->next->info.priority < P->info.priority){
+			if(list->First->info.priority < P->info.priority){
 				list->First->next->prev = P;
 				P->next = list->First->next;
 				P->prev = list->First;
@@ -126,16 +126,10 @@ void insert(List *list, infotype info){
 				while(current->info.priority < P->info.priority){
 				current = current->prev;
 				}
-				if(current == list->Last){
-					current->next = P;
-					P->prev = current;
-				}
-				else{
-					current->next->prev = P;
-					P->next = current->next;
-					P->prev = current;
-					current->next = P;		
-				}
+				current->next->prev = P;
+				P->next = current->next;
+				P->prev = current;
+				current->next = P;	
 			}
 		}
 		else{

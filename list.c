@@ -119,18 +119,25 @@ void PrintInfo (List L){
     address P;
     
     P = First(L);
+    printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
     if (P == Nil) {
-      printf("List kosong\n");
+    	printf("\n\t\t\t\t      ----- TIDAK ADA ANTRIAN -----\n");
     } else {
-      while (Next(P) != Nil) {
-        printf("Nama Hewan : %s durasi : %d ",P->info.petName,P->info.serviceTime);
-        printf("Start : %d ",P->info.startTime);
-        printf("End : %d\n",P->info.finishTime);
-        P = Next(P);
-      }
-       printf("Nama Hewan : %s durasi : %d ",P->info.petName,P->info.serviceTime);
-       printf("Start : %d ",P->info.startTime);
-       printf("End : %d",P->info.finishTime);
+      	while (Next(P) != Nil) {
+        	printf("\n\t\tPet Name \t: %s\n", P->info.petName);
+        	printf("\t\tPriority \t: %d\n", P->info.priority);
+        	printf("\t\tService Time \t: %d\n", P->info.serviceTime);
+        	printf("\t\tStart \t\t: %d\n",P->info.startTime);
+        	printf("\t\tFinish \t\t: %d\n",P->info.finishTime);
+        	printf("\t\t------------------------------------------------------------------------\n\n");
+        	P = Next(P);
+      	}
+        	printf("\n\t\tPet Name \t: %s\n", P->info.petName);
+        	printf("\t\tPriority \t: %d\n", P->info.priority);
+        	printf("\t\tService Time \t: %d\n", P->info.serviceTime);
+        	printf("\t\tStart \t\t: %d\n",P->info.startTime);
+        	printf("\t\tFinish \t\t: %d\n",P->info.finishTime);
+        	printf("\t\t------------------------------------------------------------------------\n\n");
     }
     
     //printf("\n");
