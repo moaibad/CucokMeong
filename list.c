@@ -77,12 +77,13 @@ void InsAfter (List * L, infotype X, infotype Y){
 }
 
 /*Penghapusan Elemen*/
-void DelFirst (List * L, infotype *X){
+
+void DelFirst (List * L){
 	address P;
 	
 	P = First(*L);
-    (*X) = Info(P);
     First(*L) = Next(First(*L));
+    P->next->prev = Nil;
     Next(P) = Nil;
     DeAlokasi(P);
 }

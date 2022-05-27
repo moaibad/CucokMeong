@@ -32,11 +32,16 @@ int main(){
 				printf("\n%s",list.Last);
 				getch();
 				break;
+				
+			case 2:
+				DelFirst(&list);
+				break;
 
 			case 3 :
 				PrintInfo(list);
 				getch();
 				system("cls");
+				break;
 
 			case 4 :
 				return 0;

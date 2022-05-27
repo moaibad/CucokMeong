@@ -91,7 +91,7 @@ F.S : melakukan alokasi sebuah elemen dengan nilai x dan
 menambahkan elemen list setelah y ditemukan pertama kali pada list
 */
 /*Penghapusan Elemen*/
-void DelFirst (List * L, infotype *X);
+void DelFirst (List * L);
 /*I.S : L tidak kosong
 F.S : Elemen pertama List dihapus, nilai info disimpan ke X
 dan alamat elemen pertama di dealokasi. Sehingga elemen pertama pada List
