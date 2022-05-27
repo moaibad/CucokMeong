@@ -15,7 +15,7 @@ int main(){
 	int pilihMenu;
 	
 	textGroup();
-	loading();
+	//loading();
 	
 	while(pilihMenu != 4){
 		system("cls");
@@ -32,17 +32,16 @@ int main(){
 				printf("\n%s",list.Last);
 				getch();
 				break;
-				
-			case 2:
+			
+			case 2 :
 				DelFirst(&list);
-				break;
-
+			
 			case 3 :
 				PrintInfo(list);
 				getch();
 				system("cls");
 				break;
-
+				
 			case 4 :
 				return 0;
 		}
@@ -53,8 +52,8 @@ int main(){
 
 void Menu(){
 	printf("\n\n\n\n\n\n\n\n");
-	printf("\t\t                         _________________________________________ \n");
-	printf("\t\t                        /_________________________________________\\ \n");
+	printf("\t\t                                                                      \n");
+	printf("\t\t                                                                      \n");
 	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n\n");
 	printf("\t\t\t\tPilih Menu Di bawah ini : \n");
 	printf("\t\t\t\t  [1] Registrasi \n");

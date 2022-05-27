@@ -77,15 +77,22 @@ void InsAfter (List * L, infotype X, infotype Y){
 }
 
 /*Penghapusan Elemen*/
-
 void DelFirst (List * L){
 	address P;
-	
 	P = First(*L);
-    First(*L) = Next(First(*L));
-    P->next->prev = Nil;
-    Next(P) = Nil;
-    DeAlokasi(P);
+	
+	if(Next(P) == Nil){
+		First(*L) = Nil;
+		Last(*L) = Nil;
+		DeAlokasi(P);
+	}
+	else{
+	    First(*L) = Next(First(*L));
+	    P->next->prev = Nil;
+	    Next(P) = Nil;
+	    DeAlokasi(P);	
+	}
+	
 }
 
 
@@ -120,13 +127,16 @@ void PrintInfo (List L){
     address P;
     
     P = First(L);
-    printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
     if (P == Nil) {
+    	printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
     	printf("\n\t\t\t\t      ----- TIDAK ADA ANTRIAN -----\n");
     } else {
+    	printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
       	while (Next(P) != Nil) {
         	printf("\n\t\tPet Name \t: %s\n", P->info.petName);
         	printf("\t\tPriority \t: %d\n", P->info.priority);
+        	printf("\t\tDaftar Penyakit \t: \n");
+        	printPenyakit(P);
         	printf("\t\tService Time \t: %d\n", P->info.serviceTime);
         	printf("\t\tStart \t\t: %d\n",P->info.startTime);
         	printf("\t\tFinish \t\t: %d\n",P->info.finishTime);
@@ -135,6 +145,8 @@ void PrintInfo (List L){
       	}
         	printf("\n\t\tPet Name \t: %s\n", P->info.petName);
         	printf("\t\tPriority \t: %d\n", P->info.priority);
+        	printf("\t\tDaftar Penyakit : \n");
+        	printPenyakit(P);
         	printf("\t\tService Time \t: %d\n", P->info.serviceTime);
         	printf("\t\tStart \t\t: %d\n",P->info.startTime);
         	printf("\t\tFinish \t\t: %d\n",P->info.finishTime);

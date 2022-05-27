@@ -7,10 +7,10 @@
 void tambahAntrian(infotype *info){
 	char petName[20];
 	int i = 0;
-	printf("Pet Name :");
+	printf("\t\t\t\tPet Name :");
 	scanf("%s",&info->petName);
 	//scanf("%s",&info->petOwner);
-	printf("Arrival Time:");
+	printf("\t\t\t\tArrival Time:");
 	scanf("%d",&info->arrivalTime);
 	info->startTime = 0;
 	info->finishTime = 0;
@@ -27,14 +27,14 @@ void tambahAntrian(infotype *info){
 void hitungPenyakit(infotype *info){
 	int banyakPenyakit;
 	int pilihan;
-	printf("Banyak Penyakit :");
+	printf("\t\t\t\tBanyak Penyakit :");
 	scanf("%d",&banyakPenyakit);
 
 	int i = 0;
-	//tampilkanDaftarPenyakit();
+	daftarPenyakit();
 	
 	while(i < banyakPenyakit){
-		printf("Jenis Penyakit :");
+		printf("\t\t\t\tJenis Penyakit :");
 		scanf("%d",&pilihan);
 		info->diseaseList[i] = pilihan;
 		i++;
@@ -196,4 +196,37 @@ void checkTime(List *list){
 	}
 }
 
+void daftarPenyakit(){
+	printf("\n\t\t=========================|   JENIS PENYAKIT   |========================= \n");
+	printf("\t\t------ Penyakit Ringan -----\n");
+	printf("\t\t  [1] Penyakit Kulit\n");
+	printf("\t\t  [2] Luka Ringan\n");
+	printf("\t\t  [3] Bersin\n");
+	printf("\t\t------ Penyakit Sedang -----\n");
+	printf("\t\t  [4] Cacingan\n");
+	printf("\t\t  [5] Luka Dalam\n");
+	printf("\t\t  [6] Diare\n");
+	printf("\t\t------ Penyakit Berat -----\n");
+	printf("\t\t  [7] Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");
+	printf("\t\t  [8] Kuning\n");
+	printf("\t\t  [9] Virus\n\n");
+}
+
+void printPenyakit(address P){
+	int i = 0;
+	
+	for(i;i<9;i++){
+		switch(P->info.diseaseList[i]){
+			case 1 : printf("\t\t\t\t- Penyakit Kulit\n");break;
+			case 2 : printf("\t\t\t\t- Luka Ringan\n");break;
+			case 3 : printf("\t\t\t\t- Bersin\n");break;
+			case 4 : printf("\t\t\t\t- Cacingan\n");break;
+			case 5 : printf("\t\t\t\t- Luka Dalam\n");break;
+			case 6 : printf("\t\t\t\t- Diare\n");break;
+			case 7 : printf("\t\t\t\t- Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");break;
+			case 8 : printf("\t\t\t\t- Kuning\n");break;
+			case 9 : printf("\t\t\t\t- Virus\n");break;
+		}
+	}
+}
 
