@@ -81,16 +81,18 @@ void DelFirst (List * L){
 	address P;
 	P = First(*L);
 	
-	if(Next(P) == Nil){
+	if (First(*L) != Nil){
+		if(Next(P) == Nil){
 		First(*L) = Nil;
 		Last(*L) = Nil;
 		DeAlokasi(P);
-	}
-	else{
-	    First(*L) = Next(First(*L));
-	    P->next->prev = Nil;
-	    Next(P) = Nil;
-	    DeAlokasi(P);	
+		}
+		else{
+		    First(*L) = Next(First(*L));
+		    P->next->prev = Nil;
+		    Next(P) = Nil;
+		    DeAlokasi(P);	
+		}
 	}
 	
 }
@@ -127,11 +129,10 @@ void PrintInfo (List L){
     address P;
     
     P = First(L);
+    printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
     if (P == Nil) {
-    	printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
     	printf("\n\t\t\t\t      ----- TIDAK ADA ANTRIAN -----\n");
     } else {
-    	printf("\n\t\t=========================|   DAFTAR ANTRIAN   |========================= \n");
       	while (Next(P) != Nil) {
         	printf("\n\t\tPet Name \t: %s\n", P->info.petName);
         	printf("\t\tPriority \t: %d\n", P->info.priority);

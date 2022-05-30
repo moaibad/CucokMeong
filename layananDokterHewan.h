@@ -10,4 +10,6 @@ int hitungPrioritas(infotype info);
 address moveLast(List list);
 int addTime(infotype info);
 void checkTime(List *list);
+void tampilProses(List L);
+void tampilAntrianBerikutnya(List L);
 #endif

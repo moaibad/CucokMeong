@@ -19,7 +19,7 @@ int main(){
 	
 	while(pilihMenu != 4){
 		system("cls");
-		
+		tampilProses(list);
 		Menu();
 		scanf("%d",&pilihMenu);
 
@@ -35,6 +35,9 @@ int main(){
 			
 			case 2 :
 				DelFirst(&list);
+				tampilAntrianBerikutnya(list);
+				getch();
+				break;
 			
 			case 3 :
 				PrintInfo(list);

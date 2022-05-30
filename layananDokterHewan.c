@@ -4,6 +4,10 @@
 #include "layananDokterHewan.h"
 #include "list.h"
 
+/*
+Deskripsi : Modul untuk menginputkan spesifikasi pelanggan
+Author : Cintia Ningsih
+*/
 void tambahAntrian(infotype *info){
 	char petName[20];
 	int i = 0;
@@ -23,7 +27,9 @@ void tambahAntrian(infotype *info){
 	info->priority = hitungPrioritas(*info);
 }
 
+/*
 
+*/
 void hitungPenyakit(infotype *info){
 	int banyakPenyakit;
 	int pilihan;
@@ -100,7 +106,7 @@ void insert(List *list, infotype info){
 		list->First = P;
 		list->Last = P;
 	}
-	else if(reference != Nil && reference != list->First){
+	else if(reference != Nil && reference->info.priority != list->First->info.priority){
 		if(list->Last == reference){
 			reference->next = P;
 			P->prev = reference;
@@ -116,7 +122,7 @@ void insert(List *list, infotype info){
 	}
 	else{
 		if(list->First->next != Nil){
-			if(list->First->info.priority < P->info.priority){
+			if(list->First->info.priority < P->info.priority && list->First->next->info.priority < P->info.priority){
 				list->First->next->prev = P;
 				P->next = list->First->next;
 				P->prev = list->First;
@@ -126,10 +132,16 @@ void insert(List *list, infotype info){
 				while(current->info.priority < P->info.priority){
 				current = current->prev;
 				}
-				current->next->prev = P;
-				P->next = current->next;
-				P->prev = current;
-				current->next = P;	
+				if(current == list->Last){
+					current->next = P;
+					P->prev = current;
+				}
+				else{
+					current->next->prev = P;
+					P->next = current->next;
+					P->prev = current;
+					current->next = P;		
+				}	
 			}
 		}
 		else{
@@ -227,6 +239,27 @@ void printPenyakit(address P){
 			case 8 : printf("\t\t\t\t- Kuning\n");break;
 			case 9 : printf("\t\t\t\t- Virus\n");break;
 		}
+	}
+}
+
+void tampilProses(List L){
+	printf("\n\t\t=========================|   PASIEN YANG DIPROSES   |========================= \n");
+    	
+	if(First(L) == Nil){
+		printf("\n\t\t\t\t      ----- TIDAK ADA PASIEN YANG DIPROSES -----\n");
+	}
+	else{
+		printf("\n\t\t\t\t      ----- PASIEN YANG SEDANG DIPROSES -----\n");
+		printf("\n\t\t\t\t      ----- %s -----\n",L.First->info.petName);
+	}
+}
+
+void tampilAntrianBerikutnya(List L){
+	if(First(L) == Nil){
+		printf("\n\t\t\t\t      ----- TIDAK ADA PASIEN DALAM ANTRIAN -----\n");
+	}
+	else{
+		printf("\n\t\t\t\t      ----- PASIEN %s SILAHKAN MENUJU KE RUANG PEMERIKSAAN -----\n",L.First->info.petName);
 	}
 }
 
