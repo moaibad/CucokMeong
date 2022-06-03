@@ -10,6 +10,7 @@ Tanggal :
 #include "boolean.h"
 #include <stdio.h>
 #include <conio.h>
+#include "adt_time.h"
 #define Nil NULL
 #define Info(P) (P)->info
 #define Next(P) (P)->next
@@ -27,10 +28,10 @@ typedef struct tElmtList *address; // pointer menunjuk ke alamat tElmtList
 typedef struct {
 	char petName[20];
 	char petOwner[20];
-	int arrivalTime;
-	int startTime;
-	int finishTime;
-	int serviceTime;
+	Jam arrivalTime;
+	Jam startTime;
+	Jam finishTime;
+	Jam serviceTime;
 	int priority;
 	int diseaseList[9];
 }infotype;

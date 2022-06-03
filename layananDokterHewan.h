@@ -4,11 +4,14 @@
 #include <stdio.h>
 #include <conio.h>
 #include "list.h"
+#include "adt_time.h"
 
 void hitungPenyakit(infotype *info);
 int hitungPrioritas(infotype info);
 address moveLast(List list);
-int addTime(infotype info);
+void addTime(infotype *info);
+void daftarPenyakit();
+void insert(List *list, infotype info);
 void checkTime(List *list);
 void tampilProses(List L);
 void tampilAntrianBerikutnya(List L);

@@ -138,9 +138,9 @@ void PrintInfo (List L){
         	printf("\t\tPriority \t: %d\n", P->info.priority);
         	printf("\t\tDaftar Penyakit \t: \n");
         	printPenyakit(P);
-        	printf("\t\tService Time \t: %d\n", P->info.serviceTime);
-        	printf("\t\tStart \t\t: %d\n",P->info.startTime);
-        	printf("\t\tFinish \t\t: %d\n",P->info.finishTime);
+        	printf("\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+        	printf("\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
+        	printf("\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
         	printf("\t\t------------------------------------------------------------------------\n\n");
         	P = Next(P);
       	}
@@ -148,23 +148,12 @@ void PrintInfo (List L){
         	printf("\t\tPriority \t: %d\n", P->info.priority);
         	printf("\t\tDaftar Penyakit : \n");
         	printPenyakit(P);
-        	printf("\t\tService Time \t: %d\n", P->info.serviceTime);
-        	printf("\t\tStart \t\t: %d\n",P->info.startTime);
-        	printf("\t\tFinish \t\t: %d\n",P->info.finishTime);
+        	printf("\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+       		printf("\t\tStartTime \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
+        	printf("\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
         	printf("\t\t------------------------------------------------------------------------\n\n");
     }
-    
-    //printf("\n");
-   // P = Last(L);
-    //if (P == Nil) {
-   //   printf("List kosong\n");
-   // } else {
-   //   while (Prev(P) != Nil) {
-   //     printf("%s,",P->info.petName);
-    //    P = Prev(P);
-   //   }
-   //   printf("%s",P->info.petName);
-   // }
+
 }
 
 //=========================================================================
