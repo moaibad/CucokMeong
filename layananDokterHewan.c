@@ -3,6 +3,7 @@
 #include <string.h>
 #include "layananDokterHewan.h"
 #include "list.h"
+#include "adt_time.h"
 
 /*
 Deskripsi : Modul untuk menginputkan spesifikasi pelanggan
@@ -15,15 +16,15 @@ void tambahAntrian(infotype *info){
 	scanf("%s",&info->petName);
 	//scanf("%s",&info->petOwner);
 	printf("\t\t\t\tArrival Time:");
-	scanf("%d",&info->arrivalTime);
-	info->startTime = 0;
-	info->finishTime = 0;
-	info->serviceTime = 0;
+	BacaJam(&info->arrivalTime);
+	info->startTime = MakeJam(0,0,0);
+	info->finishTime = MakeJam(0,0,0);
+	info->serviceTime = MakeJam(0,0,0);
 	for(i; i<9 ; i++){
 		info->diseaseList[i] = 0;	
 	}
 	hitungPenyakit(&*info);
-	info->serviceTime = addTime(*info);
+	addTime(&*info);
 	info->priority = hitungPrioritas(*info);
 }
 
@@ -161,48 +162,86 @@ address moveLast(List list){
 	return list.First;
 }
 
-int addTime(infotype info){
+
+void addTime(infotype *info){
 	
+
 	int time = 0;
+	int hour = 0;
+	int minute = 0;
 	int ringan = 0;
 	int sedang = 0;
 	int berat = 0;
 	int i = 0;
 	
 	for (i = 0 ; i < 9 ; i ++){
-		if(info.diseaseList[i] == 1 || info.diseaseList[i] == 2 || info.diseaseList[i] == 3){
+		if(info->diseaseList[i] == 1 || info->diseaseList[i] == 2 || info->diseaseList[i] == 3){
 			ringan ++;
 		}
-		if(info.diseaseList[i] == 4 || info.diseaseList[i] == 5 || info.diseaseList[i] == 6){
+		if(info->diseaseList[i] == 4 || info->diseaseList[i] == 5 || info->diseaseList[i] == 6){
 			sedang ++;
 		}
-		if(info.diseaseList[i] == 7 || info.diseaseList[i] == 8 || info.diseaseList[i] == 9){
+		if(info->diseaseList[i] == 7 || info->diseaseList[i] == 8 || info->diseaseList[i] == 9){
 			berat ++;
 		}
 	}
+	
 	
 	time += ringan * 15;
 	time += sedang * 30;
 	time += berat * 45;
 	
+	while (time >= 60){
+		info->serviceTime.HH += 1;
+		time = time - 60;
+	}
+	info->serviceTime.MM += time;
+
+	
 	printf ("%d\n",time);
 	printf ("%d\n",ringan);
 	printf ("%d\n",sedang);
 	printf ("%d\n",berat);
-	return time;
 }
 
 void checkTime(List *list){
 	address current = list->First;
+	
+	// Jika Antrian tersebut adalah antrian yang pertama
 	if (list->First == list->Last){
-		current->info.startTime = current->info.arrivalTime;
-		current->info.finishTime = current->info.startTime + current->info.serviceTime;
+		//hitung Start Time ( Mulai Waktu Pemerikasan
+		current->info.startTime.HH = current->info.arrivalTime.HH;
+		current->info.startTime.MM = current->info.arrivalTime.MM;
+
+		
+		//hitung Finish Time
+		current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
+		current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
+			while (current->info.finishTime.MM >= 60){
+			current->info.finishTime.HH += 1;
+			current->info.finishTime.MM -= 60;
+		}
+
 	}
+	
+	//Jika bukan antrian yang pertama
 	else {
 		current = current->next;
 		while (current != Nil){
-		current->info.startTime = current->prev->info.finishTime;
-		current->info.finishTime = current->info.startTime + current->info.serviceTime;
+		//Hitung Start Time
+		current->info.startTime.HH = current->prev->info.finishTime.HH;
+		current->info.startTime.MM = current->prev->info.finishTime.MM;
+		
+		//Hitung Finish Time
+		
+		current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
+		current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
+		while (current->info.finishTime.MM >= 60){
+			current->info.finishTime.HH += 1;
+			current->info.finishTime.MM -= 60;
+		}
+		
+
 		current = current->next;
 	}
 	}
