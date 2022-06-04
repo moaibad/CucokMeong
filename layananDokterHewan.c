@@ -92,69 +92,21 @@ int hitungPrioritas(infotype info){
 
 void antrianBaru(List *list,infotype info){
 	info.priority = hitungPrioritas(info);
-	insert(&*list, info);
-	checkTime(&*list);
+	
+	// Memvalidasi waktu kedatangan baru
+	if (validasiArrivalTime(*list,info.arrivalTime)){
+		insert(&*list, info);
+		checkTime(&*list);
+	}
+	else {
+		printf("\t\t\t\tInvalid Arrival Time !!!!!!!!!");
+		getch();
+	}
+
 }
 
 
-void insert(List *list, infotype info){
-	address P;
-	address current = list->Last;
-	address reference = Search(*list, info.priority);
-	
-	
-	P = Alokasi(info);
-	
-	if(isEmpty(*list)){
-		list->First = P;
-		list->Last = P;
-	}
-	else if(reference != Nil && reference->info.priority != list->First->info.priority){
-		if(list->Last == reference){
-			reference->next = P;
-			P->prev = reference;
-		}
-		else{
-			reference->next->prev = P;
-			P->next = reference->next;
-			P->prev = reference;
-			reference->next = P;		
-			printf("\n reference ada \n");
-			getch();
-		}		
-	}
-	else{
-		if(list->First->next != Nil){
-			if(list->First->info.priority < P->info.priority && list->First->next->info.priority < P->info.priority){
-				list->First->next->prev = P;
-				P->next = list->First->next;
-				P->prev = list->First;
-				list->First->next = P;
-			}
-			else{
-				while(current->info.priority < P->info.priority){
-				current = current->prev;
-				}
-				if(current == list->Last){
-					current->next = P;
-					P->prev = current;
-				}
-				else{
-					current->next->prev = P;
-					P->next = current->next;
-					P->prev = current;
-					current->next = P;		
-				}	
-			}
-		}
-		else{
-			list->First->next = P;
-			P->prev = list->First;
-		}
-	}
-	
-	list->Last = moveLast(*list);
-}
+
 
 address moveLast(List list){
 	while (list.First->next != Nil){
@@ -198,12 +150,6 @@ void addTime(infotype *info){
 		time = time - 60;
 	}
 	info->serviceTime.MM += time;
-
-	
-	printf ("%d\n",time);
-	printf ("%d\n",ringan);
-	printf ("%d\n",sedang);
-	printf ("%d\n",berat);
 }
 
 void checkTime(List *list){
@@ -383,4 +329,29 @@ void panduanAplikasi(){
 	fclose(FPanduanAplikasi);
 }
 
+boolean validasiArrivalTime(List L, Jam J)
+{
+	if (L.First == Nil){
+		return true;
+	}
+	address current = L.First;	
+	int maxTime = JamToMenit(current->info.arrivalTime);					
+	while (current != Nil)
+	{
+		if (JamToMenit(current->info.arrivalTime) >= maxTime)
+		{
+			maxTime = JamToMenit(current->info.arrivalTime);
+		}
+		current = current->next;
+	}
+
+	if (maxTime < JamToMenit(J))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 

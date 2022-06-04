@@ -98,19 +98,10 @@ F.S : Elemen pertama List dihapus, nilai info disimpan ke X
 dan alamat elemen pertama di dealokasi. Sehingga elemen pertama pada List
 adalah elemen berikutnya sebelum penghapusan.
 */
-void DelLast (List *L, infotype *X);
-/*I.S : L tidak kosong
-F.S : Elemen terakhir list dihapus: nilai info disimpan pada X
-dan alamat elemen terakhir di dealokasi. Sehingga elemen terakhir pada
-List adalah elemen sebelumnya sebelum penghapusan.
-*/
-void DelAfter (List * L, infotype *X, infotype Y);
-/*I.S : L terdefinisi, mungkin kosong
-F.S : melakukan dealokasi sebuah elemen dengan nilai x setelah nilai y
-pertama ditemukan pada list.
-Nilai x yang dihapus dalam list akan disimpan sebagai keluaran dari
-prosedur
-*/
+
+void insert(List *list, infotype info);
+
+
 /*Menampilkan Elemen*/
 void PrintInfo (List L);
 /* I.S : L terdefinisi, mungkin kosong
@@ -122,22 +113,12 @@ kosong?
 //=========================================================================
 
 /** KELOMPOK OPERASI LAIN TERHADAP TYPE **/
-int NbElmt (List L);
-// Mengirimkan banyaknya elemen List atau mengirimkan 0 jika List kosong
+
 address Search (List L, int priority);
 /* Mencari apakah ada elemen list dengan Info (P)= X
 Jika ada, mengirimkan address elemen tersebut yang pertama kali ditemukan.
 jika tidak ada, mengirimkan Nil
 */
-void InversList (List *L);
-/* I.S : L sembarang
-F.S : Mengubah Elemen list menjadi terbalik, yaitu elemen terakhir
-menjadi elemen pertama, elemen kedua menjadi elemen sebelum terakhir dst
-Membalik elemen list, tanpa melakukan alokasi / dealokasi
-*/
-List getNewInversList (List L);
-// Mengirimkan list baru, hasil invers dari L
 
-void DelAll (List *L);
 #endif
 
