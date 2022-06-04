@@ -6,6 +6,7 @@
 #include "boolean.h"
 #include "stdio.h"
 
+
 /* Notasi Akses */
 #define Hour(J) (J).HH
 #define Minute(J) (J).MM
@@ -40,9 +41,8 @@ void TulisJam(Jam J);
 
 /*----------Konversi terhadap type jam----------*/
 
-int JamToDetik(Jam J);
+int JamToMenit(Jam J);
 /* Konversi Jam menjadi detik */
 
-Jam DetikToJam(int N);
-/* Konversi detik ke Jam */
+
 #endif

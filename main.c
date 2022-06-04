@@ -3,17 +3,18 @@
 #include "list.h"
 #include "layananDokterHewan.h"
 
+
 void Menu();
 void textGroup();
 void loading();
+List list;
+
 
 int main(){
-	List list;
+
 	infotype info;
-	CreateList(&list);
-	
 	int pilihMenu;
-	
+	CreateList(&list);
 	//textGroup();
 	//loading();
 	
@@ -26,10 +27,7 @@ int main(){
 		switch(pilihMenu){
 			case 1 : 
 				tambahAntrian(&info);
-				printf("\n%d", info.priority);
 				antrianBaru(&list, info);
-				printf("\n%d", info.priority);
-				printf("\n%s",list.Last);
 				getch();
 				break;
 			

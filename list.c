@@ -40,40 +40,61 @@ boolean isEmpty(List L){
 	}
 }
 
-void InsFirst (List *L, infotype X){
+void insert(List *list, infotype info){
 	address P;
-	P = Alokasi(X);
-	Next(P) = First(*L);
-	First(*L) = P;
-}
-
-void InsLast (List * L, infotype X){
-	address P;
-	P = Alokasi(X);
+	address current = list->Last;
+	address reference = Search(*list, info.priority);
 	
-	if (First(*L) == Nil){
-		Next(P) = First(*L);
-		First(*L) = P;
-	}else{
-		P = First(*L);
-		while(Next(P) != Nil){
-			P = Next(P);
+	
+	P = Alokasi(info);
+	
+	if(isEmpty(*list)){
+		list->First = P;
+		list->Last = P;
+	}
+	else if(reference != Nil && reference->info.priority != list->First->info.priority){
+		if(list->Last == reference){
+			reference->next = P;
+			P->prev = reference;
 		}
-		Next(P)	= Alokasi(X);	
+		else{
+			reference->next->prev = P;
+			P->next = reference->next;
+			P->prev = reference;
+			reference->next = P;		
+		}		
 	}
-}
-
-void InsAfter (List * L, infotype X, infotype Y){
-	address P,Q;
-	P = Alokasi (X);
-	//Q = Search(*L,Y);
+	else{
+		if(list->First->next != Nil){
+			if(list->First->info.priority < P->info.priority && list->First->next->info.priority < P->info.priority){
+				list->First->next->prev = P;
+				P->next = list->First->next;
+				P->prev = list->First;
+				list->First->next = P;
+			}
+			else{
+				while(current->info.priority < P->info.priority){
+				current = current->prev;
+				}
+				if(current == list->Last){
+					current->next = P;
+					P->prev = current;
+				}
+				else{
+					current->next->prev = P;
+					P->next = current->next;
+					P->prev = current;
+					current->next = P;		
+				}	
+			}
+		}
+		else{
+			list->First->next = P;
+			P->prev = list->First;
+		}
+	}
 	
-	if(Q != Nil){
-		Next(P) = Next(Q) ;
-		Next(Q) = P ;
-	}else{
-		printf("Lokasi tidak ditemukan");
-	}
+	list->Last = moveLast(*list);
 }
 
 /*Penghapusan Elemen*/
@@ -100,31 +121,6 @@ void DelFirst (List * L){
 }
 
 
-void DelLast (List *L, infotype *X){
-	address P,Q;
-	P = First(*L);
-	
-	while (Next(P)!= Nil){
-		Q = P;
-		P = Next(P);
-	}
-	Next(Q) = Nil;
-	DeAlokasi(P);
-}
-
-void DelAfter (List * L, infotype *X, infotype Y){
-	address P,Q;
-	
-	//Q = Search(*L,Y);
-	if(Q != Nil){
-		Q = Next(P);
-		Next(P) = Next(Q) ;
-		Next(Q) = Nil;
-		DeAlokasi (Q);
-	}else{
-		printf("Lokasi tidak ditemukan");
-	}
-}
 
 /*Menampilkan Elemen*/
 void PrintInfo (List L){
@@ -172,7 +168,6 @@ address Search (List L, int priority){
 	P = Last(L);
 	Found = false;
 	while((P != Nil) && (Found == false)){
-		printf("\nPriority P = %d\n",P->info.priority);
 		if (priority == P->info.priority){
 			Found = true;
 		}else {
@@ -180,46 +175,9 @@ address Search (List L, int priority){
 		}
 	}
 	
-	if(P!=Nil){
-		printf("\nPriority P = %d\n",P->info.priority);
-	}
-	
-	if(Found == true){
-		printf("\n%d ketemu\n",priority );
-		return P;
-	}
-	else{
-		printf("\n%d tidak ketemu\n",priority );
-		return Nil;
-	}
-	
+	return P;
 }
 
-void DelAll (List *L) {
-   /* Kamus Lokal */
-    address P;
 
-    /* Algoritma */
-    P = First(*L);
-    while (P != Nil) {
-      First(*L) = Next(First(*L));
-      Next(P) = Nil;
-      DeAlokasi(P);
-      P = First(*L);
-    }
-}
-
-/* Mencari apakah ada elemen list dengan Info (P)= X
-Jika ada, mengirimkan address elemen tersebut yang pertama kali ditemukan.
-jika tidak ada, mengirimkan Nil
-*/
-void InversList (List *L);
-/* I.S : L sembarang
-F.S : Mengubah Elemen list menjadi terbalik, yaitu elemen terakhir
-menjadi elemen pertama, elemen kedua menjadi elemen sebelum terakhir dst
-Membalik elemen list, tanpa melakukan alokasi / dealokasi
-*/
-List getNewInversList (List L);
-// Mengirimkan list baru, hasil invers dari L
 
 

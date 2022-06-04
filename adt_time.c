@@ -4,6 +4,7 @@
 
 #include "adt_time.h"
 
+
 /* -----------konstruktor Jam--------- */
 
 Jam MakeJam(int H, int M, int S)
@@ -58,26 +59,14 @@ void TulisJam(Jam J)
    printf("%d:%d:%d",Hour(J),Minute(J),Second(J));
 }
 
-int JamToDetik(Jam J)
+
+int JamToMenit(Jam J)
 /* Konversi Jam menjadi detik */
 
 { 
   /* Kamus Lokal */
   /* Algoritma */
-   return(3600 *Hour(J) + 60 *Minute(J) + Second(J));
+   return(60 * Hour(J) + Minute(J));
 }
 
-Jam DetikToJam(int N)
-/* Konversi detik ke Jam */
 
-{ 
-  /* Kamus Lokal */
-   int sisa;
-   Jam JOut;
-  /* Algoritma */
-   Hour(JOut) = N / 3600;
-   sisa = N % 3600;
-   Minute(JOut) = sisa / 60;
-   Second(JOut) = sisa % 60;
-   return JOut;
-}
