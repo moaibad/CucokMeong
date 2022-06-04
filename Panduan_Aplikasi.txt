@@ -1,0 +1,27 @@
+
+
+		================================|     PANDUAN APLIKASI     |=============================== 
+
+		     Disediakan beberapa pilihan menu pada Aplikasi Layanan Dokter Hewan Cucok Meong. Yang 
+		terdiri atas Registrasi, Panggil Antrian, Daftar Antrian, Riwayat Antrian, Panduan Aplikasi 
+		dan Exit. Pengguna dapat memilih menu tersebut sesuai dengan kebutuhan. Berikut fungsi dan 
+		cara menggunakan aplikasi :
+		[1] Akan disediakan pilihan menu, anda dapat memilih menu tersebut sesuai dengan kebutuhan
+		[2] Pilih nomer 1 untuk melakukan registrasi. Pada menu registrasi anda akan diminta untuk 
+    		    memasukkan nama hewan, waktu kedatangan (dalam bentuk jam dan menit) dan total penyakit.
+    	 	    Setelah anda memasukkan total penyakit maka akan disediakan daftar penyakit dari hewan, 
+    		    anda hanya perlu memilih jenis penyakit sesuai dengan banyak penyakit yang diderita oleh 
+    		    hewan.
+		[3] Pilih nomer 2 untuk memanggil antrian.Pada menu ini, akan di tampilkan nama antrian
+    		    selanjutnya untuk dilakukan pemeriksaan.
+		[4] Pilih nomer 3 untuk melihat daftar antrian. Pada menu ini, akan di tampilkan daftar dari
+    		    antrian yang sedang berlangsung. Antrian akan di tentukan sesuai dengan prioritas paling 
+    		    tinggi, kecuali customer yang datang pertama. Maka customer tersebut akan langsung 
+    		    dilakukan pemeriksaan. 
+		[5] Pilih nomer 4 untuk melihat riwayat antrian. pada menu ini, semua data dari customer yang 
+    		    telah melakukan pemeriksaan akan disimpan pada sebuah file dan akan di tampilkan secara 
+    		    keseluruhan.
+		[6] Pilih nomer 5 untuk melihat panduan aplikasi. Pada menu ini akan di tampilkan cara
+    		    menggunakan Aplikasi Layanan Dokter Hewan Cucok Meong.
+		[7] Pilih nomer 6 untuk keluar dari Aplikasi Layanan Dokter Hewan Cucok Meong.
+

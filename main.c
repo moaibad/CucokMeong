@@ -14,10 +14,10 @@ int main(){
 	
 	int pilihMenu;
 	
-	textGroup();
+	//textGroup();
 	//loading();
 	
-	while(pilihMenu != 4){
+	while(pilihMenu != 6){
 		system("cls");
 		tampilProses(list);
 		Menu();
@@ -46,6 +46,18 @@ int main(){
 				break;
 				
 			case 4 :
+				riwayat();
+				getch();
+				system("cls");
+				break;
+			
+			case 5 :
+				panduanAplikasi();
+				getch();
+				system("cls");
+				break;
+			
+			case 6 :
 				return 0;
 		}
 	}
@@ -54,15 +66,15 @@ int main(){
 }
 
 void Menu(){
-	printf("\n\n\n\n\n\n\n\n");
-	printf("\t\t                                                                      \n");
-	printf("\t\t                                                                      \n");
+	printf("\n\n\n");
 	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n\n");
 	printf("\t\t\t\tPilih Menu Di bawah ini : \n");
 	printf("\t\t\t\t  [1] Registrasi \n");
 	printf("\t\t\t\t  [2] Panggil Antrian \n");
 	printf("\t\t\t\t  [3] Daftar Antrian \n");
-	printf("\t\t\t\t  [4] Exit \n\n");
+	printf("\t\t\t\t  [4] Riwayat Antrian \n");
+	printf("\t\t\t\t  [5] Panduan Aplikasi \n");
+	printf("\t\t\t\t  [6] Exit \n\n");
 	printf("\t\t\t\tMasukkan Pilihan : ");
 }
 

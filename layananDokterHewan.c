@@ -12,10 +12,12 @@ Author : Cintia Ningsih
 void tambahAntrian(infotype *info){
 	char petName[20];
 	int i = 0;
-	printf("\t\t\t\tPet Name :");
+	
+	printf("\n\n\t\t===================================|     REGISTRASI     |================================== \n\n");
+	printf("\t\t\t\tPet Name \t: ");
 	scanf("%s",&info->petName);
 	//scanf("%s",&info->petOwner);
-	printf("\t\t\t\tArrival Time:");
+	printf("\t\t\t\tArrival Time");
 	BacaJam(&info->arrivalTime);
 	info->startTime = MakeJam(0,0,0);
 	info->finishTime = MakeJam(0,0,0);
@@ -34,14 +36,14 @@ void tambahAntrian(infotype *info){
 void hitungPenyakit(infotype *info){
 	int banyakPenyakit;
 	int pilihan;
-	printf("\t\t\t\tBanyak Penyakit :");
+	printf("\t\t\t\tTotal Disease \t: ");
 	scanf("%d",&banyakPenyakit);
 
 	int i = 0;
 	daftarPenyakit();
 	
 	while(i < banyakPenyakit){
-		printf("\t\t\t\tJenis Penyakit :");
+		printf("\t\t\t\tType Of Diseases : ");
 		scanf("%d",&pilihan);
 		info->diseaseList[i] = pilihan;
 		i++;
@@ -248,19 +250,19 @@ void checkTime(List *list){
 }
 
 void daftarPenyakit(){
-	printf("\n\t\t=========================|   JENIS PENYAKIT   |========================= \n");
-	printf("\t\t------ Penyakit Ringan -----\n");
-	printf("\t\t  [1] Penyakit Kulit\n");
-	printf("\t\t  [2] Luka Ringan\n");
-	printf("\t\t  [3] Bersin\n");
-	printf("\t\t------ Penyakit Sedang -----\n");
-	printf("\t\t  [4] Cacingan\n");
-	printf("\t\t  [5] Luka Dalam\n");
-	printf("\t\t  [6] Diare\n");
-	printf("\t\t------ Penyakit Berat -----\n");
-	printf("\t\t  [7] Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");
-	printf("\t\t  [8] Kuning\n");
-	printf("\t\t  [9] Virus\n\n");
+	printf("\n\t\t---------------------------------|   TYPES OF DISEASES   |--------------------------------- \n");
+	printf("\t\t\tPenyakit Ringan \n");
+	printf("\t\t\t [1] Penyakit Kulit\n");
+	printf("\t\t\t [2] Luka Ringan\n");
+	printf("\t\t\t [3] Bersin\n");
+	printf("\t\t\tPenyakit Sedang \n");
+	printf("\t\t\t [4] Cacingan\n");
+	printf("\t\t\t [5] Luka Dalam\n");
+	printf("\t\t\t [6] Diare\n");
+	printf("\t\t\tPenyakit Berat\n");
+	printf("\t\t\t [7] Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");
+	printf("\t\t\t [8] Kuning\n");
+	printf("\t\t\t [9] Virus\n\n");
 }
 
 void printPenyakit(address P){
@@ -268,37 +270,110 @@ void printPenyakit(address P){
 	
 	for(i;i<9;i++){
 		switch(P->info.diseaseList[i]){
-			case 1 : printf("\t\t\t\t- Penyakit Kulit\n");break;
-			case 2 : printf("\t\t\t\t- Luka Ringan\n");break;
-			case 3 : printf("\t\t\t\t- Bersin\n");break;
-			case 4 : printf("\t\t\t\t- Cacingan\n");break;
-			case 5 : printf("\t\t\t\t- Luka Dalam\n");break;
-			case 6 : printf("\t\t\t\t- Diare\n");break;
-			case 7 : printf("\t\t\t\t- Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");break;
-			case 8 : printf("\t\t\t\t- Kuning\n");break;
-			case 9 : printf("\t\t\t\t- Virus\n");break;
+			case 1 : printf("\t\t\t\t\t- Penyakit Kulit\n");break;
+			case 2 : printf("\t\t\t\t\t- Luka Ringan\n");break;
+			case 3 : printf("\t\t\t\t\t- Bersin\n");break;
+			case 4 : printf("\t\t\t\t\t- Cacingan\n");break;
+			case 5 : printf("\t\t\t\t\t- Luka Dalam\n");break;
+			case 6 : printf("\t\t\t\t\t- Diare\n");break;
+			case 7 : printf("\t\t\t\t\t- Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");break;
+			case 8 : printf("\t\t\t\t\t- Kuning\n");break;
+			case 9 : printf("\t\t\t\t\t- Virus\n");break;
 		}
 	}
 }
 
 void tampilProses(List L){
-	printf("\n\t\t=========================|   PASIEN YANG DIPROSES   |========================= \n");
+	printf("\n\t\t=============================|     PASIEN YANG DIPROSES     |============================== \n");
     	
 	if(First(L) == Nil){
-		printf("\n\t\t\t\t      ----- TIDAK ADA PASIEN YANG DIPROSES -----\n");
+		printf("\n\t\t\t\t\t----- TIDAK ADA PASIEN YANG DIPROSES -----\n");
 	}
 	else{
-		printf("\n\t\t\t\t      ----- PASIEN YANG SEDANG DIPROSES -----\n");
-		printf("\n\t\t\t\t      ----- %s -----\n",L.First->info.petName);
+		printf("\n\t\t\t\t      ----- Pasien Atas Nama %s Sedang Diperoses -----\n", L.First->info.petName);
 	}
 }
 
 void tampilAntrianBerikutnya(List L){
+	printf("\n\n\t\t===============================|     PANGGIL ANTRIAN     |================================= \n");
 	if(First(L) == Nil){
-		printf("\n\t\t\t\t      ----- TIDAK ADA PASIEN DALAM ANTRIAN -----\n");
+		printf("\n\t\t\t\t\t----- TIDAK ADA PASIEN DALAM ANTRIAN -----\n");
 	}
 	else{
-		printf("\n\t\t\t\t      ----- PASIEN %s SILAHKAN MENUJU KE RUANG PEMERIKSAAN -----\n",L.First->info.petName);
+		printf("\n\t\t\t    ----- Pasien Atas Nama %s Silakan Menuju Ke Ruang Pemeriksaan -----\n",L.First->info.petName);
 	}
 }
+
+void riwayatAntrian(address P){
+	
+	FILE *FRiwayatAntrian;
+	FRiwayatAntrian = fopen("Riwayat_Antrian.txt", "a");
+
+	if (FRiwayatAntrian == NULL){
+        printf("TIDAK ADA FILE!");
+    }else{
+    	fprintf(FRiwayatAntrian, "\n\t\t\tPet Name \t: %s\n", P->info.petName);
+        fprintf(FRiwayatAntrian, "\t\t\tPriority \t: %d\n", P->info.priority);
+        fputs("\t\t\tDisease List \t: \n", FRiwayatAntrian);
+    	
+    	//daftar penyakit
+    	int i = 0;
+		for(i;i<9;i++){
+			switch(P->info.diseaseList[i]){
+				case 1 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Penyakit Kulit\n");break;
+				case 2 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Luka Ringan\n");break;
+				case 3 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Bersin\n");break;
+				case 4 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Cacingan\n");break;
+				case 5 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Luka Dalam\n");break;
+				case 6 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Diare\n");break;
+				case 7 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Gangguan Kerongkongan yang Mengeluarkan Lendir Berbau Busuk\n");break;
+				case 8 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Kuning\n");break;
+				case 9 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Virus\n");break;
+			}
+		}
+	
+    	fprintf(FRiwayatAntrian, "\t\t\tStart Time\t: %02d:%02d\n", P->info.startTime.HH, P->info.startTime.MM);
+    	fprintf(FRiwayatAntrian, "\t\t\tService Time\t: %02d:%02d\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+    	fprintf(FRiwayatAntrian, "\t\t\tFinish Time\t: %02d:%02d\n", P->info.finishTime.MM, P->info.finishTime.MM);
+    	fputs("\t\t-------------------------------------------------------------------------------------------\n\n", FRiwayatAntrian);
+    }
+    fclose(FRiwayatAntrian);
+}
+
+void riwayat(){
+	printf("\n\n\t\t================================|     RIWAYAT ANTRIAN     |================================ \n");
+	
+	FILE *FRiwayatAntrian;
+	char length[6000];
+	
+	FRiwayatAntrian=fopen("Riwayat_Antrian.txt","r");
+	
+	if (FRiwayatAntrian == NULL){
+        printf("\n\t\t\t\t\t\t----- TIDAK ADA FILE! -----");
+    }else{
+		while (fgets(length,6000,FRiwayatAntrian)!=NULL){
+			printf("%s", length);
+		}
+	}
+	
+	fclose(FRiwayatAntrian);
+}
+
+void panduanAplikasi(){
+	FILE *FPanduanAplikasi;
+	char length[6000];
+	
+	FPanduanAplikasi=fopen("Panduan_Aplikasi.txt","r");
+	
+	if (FPanduanAplikasi == NULL){
+        printf("\n\t\t\t\t\t\t----- TIDAK ADA FILE! -----");
+    }else{
+		while (fgets(length,6000,FPanduanAplikasi)!=NULL){
+			printf("%s", length);
+		}
+	}
+	
+	fclose(FPanduanAplikasi);
+}
+
 

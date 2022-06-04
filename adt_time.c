@@ -41,8 +41,8 @@ void BacaJam(Jam *J)
    int H, M, S;
   /* Algoritma */
    do {
-       printf("\n\t\t\t\tMasukkan jam : ");scanf("%d",&H);
-       printf("\t\t\t\tMasukkan menit : ");scanf("%d",&M);
+       printf("\n\t\t\t\tEnter Hour \t: ");scanf("%d",&H);
+       printf("\t\t\t\tEnter Minute \t: ");scanf("%d",&M);
       } while(!IsJValid(H,M,S));
    *J = MakeJam(H,M,S);
 }
