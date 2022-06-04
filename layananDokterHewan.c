@@ -207,46 +207,53 @@ void addTime(infotype *info){
 }
 
 void checkTime(List *list){
-	address current = list->First;
-	
-	// Jika Antrian tersebut adalah antrian yang pertama
-	if (list->First == list->Last){
-		//hitung Start Time ( Mulai Waktu Pemerikasan
-		current->info.startTime.HH = current->info.arrivalTime.HH;
-		current->info.startTime.MM = current->info.arrivalTime.MM;
+    address current = list->First;
+    
+    // Jika Antrian tersebut adalah antrian yang pertama
+    if (list->First == list->Last){
+        //hitung Start Time ( Mulai Waktu Pemerikasan
+        current->info.startTime.HH = current->info.arrivalTime.HH;
+        current->info.startTime.MM = current->info.arrivalTime.MM;
 
-		
-		//hitung Finish Time
-		current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
-		current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
-			while (current->info.finishTime.MM >= 60){
-			current->info.finishTime.HH += 1;
-			current->info.finishTime.MM -= 60;
-		}
+        
+        //hitung Finish Time
+        current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
+        current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
+            while (current->info.finishTime.MM >= 60){
+            current->info.finishTime.HH += 1;
+            current->info.finishTime.MM -= 60;
+        }
 
-	}
-	
-	//Jika bukan antrian yang pertama
-	else {
-		current = current->next;
-		while (current != Nil){
-		//Hitung Start Time
-		current->info.startTime.HH = current->prev->info.finishTime.HH;
-		current->info.startTime.MM = current->prev->info.finishTime.MM;
-		
-		//Hitung Finish Time
-		
-		current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
-		current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
-		while (current->info.finishTime.MM >= 60){
-			current->info.finishTime.HH += 1;
-			current->info.finishTime.MM -= 60;
-		}
-		
+    }
+    
+    //Jika bukan antrian yang pertama
+    else {
+        current = current->next;
+        while (current != Nil){
+        //Hitung Start Time
+        if((current->info.arrivalTime.HH >= current->prev->info.finishTime.HH) && (current->info.arrivalTime.MM >= current->prev->info.finishTime.MM)){
+            current->info.startTime.HH = current->info.arrivalTime.HH;
+            current->info.startTime.MM = current->info.arrivalTime.MM + 1;
+        }
+        else{
+            current->info.startTime.HH = current->prev->info.finishTime.HH;
+            current->info.startTime.MM = current->prev->info.finishTime.MM + 1;    
+        }
+        
+        
+        //Hitung Finish Time
+        
+        current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
+        current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
+        while (current->info.finishTime.MM >= 60){
+            current->info.finishTime.HH += 1;
+            current->info.finishTime.MM -= 60;
+        }
+        
 
-		current = current->next;
-	}
-	}
+        current = current->next;
+    }
+    }
 }
 
 void daftarPenyakit(){
@@ -332,7 +339,7 @@ void riwayatAntrian(address P){
 			}
 		}
 		
-	fprintf(FRiwayatAntrian, "\t\t\tService Time\t: %02d:%02d\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+	    fprintf(FRiwayatAntrian, "\t\t\tService Time\t: %02d:%02d\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
     	fprintf(FRiwayatAntrian, "\t\t\tStart Time\t: %02d:%02d\n", P->info.startTime.HH, P->info.startTime.MM);
     	fprintf(FRiwayatAntrian, "\t\t\tFinish Time\t: %02d:%02d\n", P->info.finishTime.HH, P->info.finishTime.MM);
     	fputs("\t\t-------------------------------------------------------------------------------------------\n\n", FRiwayatAntrian);
