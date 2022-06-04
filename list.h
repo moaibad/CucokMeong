@@ -26,7 +26,7 @@ Elemen terakhir list ===> Jika addressnya Last maka Next (Last) = Nil
 typedef struct tElmtList *address; // pointer menunjuk ke alamat tElmtList
 
 typedef struct {
-	char petName[20];
+	char petName[50];
 	char petOwner[20];
 	Jam arrivalTime;
 	Jam startTime;
