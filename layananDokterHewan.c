@@ -331,9 +331,9 @@ void riwayatAntrian(address P){
 				case 9 : fprintf(FRiwayatAntrian, "\t\t\t\t\t- Virus\n");break;
 			}
 		}
-	
+		
+	fprintf(FRiwayatAntrian, "\t\t\tService Time\t: %02d:%02d\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
     	fprintf(FRiwayatAntrian, "\t\t\tStart Time\t: %02d:%02d\n", P->info.startTime.HH, P->info.startTime.MM);
-    	fprintf(FRiwayatAntrian, "\t\t\tService Time\t: %02d:%02d\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
     	fprintf(FRiwayatAntrian, "\t\t\tFinish Time\t: %02d:%02d\n", P->info.finishTime.HH, P->info.finishTime.MM);
     	fputs("\t\t-------------------------------------------------------------------------------------------\n\n", FRiwayatAntrian);
     }
