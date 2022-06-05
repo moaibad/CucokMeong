@@ -133,24 +133,36 @@ void PrintInfo (List L){
     	printf("\n\t\t\t\t\t\t----- TIDAK ADA ANTRIAN -----\n");
     } else {
       	while (Next(P) != Nil) {
-        	printf("\n\t\t\tPet Name \t: %s\n", P->info.petName);
-        	printf("\t\t\tPriority \t: %d\n", P->info.priority);
-        	printf("\t\t\tDisease List \t: \n");
-        	printPenyakit(P);
-        	printf("\t\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
-        	printf("\t\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
-        	printf("\t\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
-        	printf("\t\t-------------------------------------------------------------------------------------------\n\n");
+      		if(P != First(L)){
+      			printf("\n\t\t\tPet Name \t: %s\n", P->info.petName);
+      			printf("\t\t\tPet Owner \t: %s\n", P->info.petOwner);
+	        	printf("\n\t\t\tPriority \t: %d\n", P->info.priority);
+	        	printf("\n\t\t\tDisease List \t: \n");
+	        	printPenyakit(P);
+	        	printf("\n\t\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+	        	printf("\n\t\t\tArrival Time\t: %02d:%02d\n", P->info.arrivalTime.HH, P->info.arrivalTime.MM);
+	        	printf("\t\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
+	        	printf("\t\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
+	        	printf("\t\t-------------------------------------------------------------------------------------------\n\n");
+			  }
         	P = Next(P);
       	}
-        	printf("\n\t\t\tPet Name \t: %s\n", P->info.petName);
-        	printf("\t\t\tPriority \t: %d\n", P->info.priority);
-        	printf("\t\t\tDisease List \t: \n");
-        	printPenyakit(P);
-        	printf("\t\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
-       		printf("\t\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
-        	printf("\t\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
-        	printf("\t\t-------------------------------------------------------------------------------------------\n\n");
+      		if(P != First(L)){
+      			printf("\n\t\t\tPet Name \t: %s\n", P->info.petName);
+      			printf("\t\t\tPet Owner \t: %s\n", P->info.petOwner);
+	        	printf("\n\t\t\tPriority \t: %d\n", P->info.priority);
+	        	printf("\n\t\t\tDisease List \t: \n");
+	        	printPenyakit(P);
+	        	printf("\n\t\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+	        	printf("\n\t\t\tArrival Time\t: %02d:%02d\n", P->info.arrivalTime.HH, P->info.arrivalTime.MM);
+	       		printf("\t\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
+	        	printf("\t\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
+	        	printf("\t\t-------------------------------------------------------------------------------------------\n\n");
+			}
+			else{
+				printf("\n\t\t\t\t\t\t----- TIDAK ADA ANTRIAN -----\n");
+			}
+        	
     }
 
 }

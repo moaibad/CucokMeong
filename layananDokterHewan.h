@@ -16,4 +16,5 @@ void checkTime(List *list);
 void tampilProses(List L);
 void tampilAntrianBerikutnya(List L);
 boolean validasiArrivalTime(List L,Jam J);
+char* convertBulan(int bulan);
 #endif

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "layananDokterHewan.h"
 #include "list.h"
 #include "adt_time.h"
@@ -15,8 +16,9 @@ void tambahAntrian(infotype *info){
 	
 	printf("\n\n\t\t===================================|     REGISTRASI     |================================== \n\n");
 	printf("\t\t\t\tPet Name \t: ");
-	scanf("%s",&info->petName);
-	//scanf("%s",&info->petOwner);
+	scanf(" %[^\n]s",&info->petName);
+	printf("\t\t\t\tPet Owner \t: ");
+	scanf(" %[^\n]s",&info->petOwner);
 	printf("\t\t\t\tArrival Time");
 	BacaJam(&info->arrivalTime);
 	info->startTime = MakeJam(0,0,0);
@@ -159,7 +161,7 @@ void checkTime(List *list){
     if (list->First == list->Last){
         //hitung Start Time ( Mulai Waktu Pemerikasan
         current->info.startTime.HH = current->info.arrivalTime.HH;
-        current->info.startTime.MM = current->info.arrivalTime.MM;
+        current->info.startTime.MM = current->info.arrivalTime.MM + 1;
 
         
         //hitung Finish Time
@@ -177,7 +179,7 @@ void checkTime(List *list){
         current = current->next;
         while (current != Nil){
         //Hitung Start Time
-        if((current->info.arrivalTime.HH >= current->prev->info.finishTime.HH) && (current->info.arrivalTime.MM >= current->prev->info.finishTime.MM)){
+        if(JamToMenit(current->info.arrivalTime) >= JamToMenit(current->prev->info.finishTime)){
             current->info.startTime.HH = current->info.arrivalTime.HH;
             current->info.startTime.MM = current->info.arrivalTime.MM + 1;
         }
@@ -258,16 +260,19 @@ void tampilAntrianBerikutnya(List L){
 }
 
 void riwayatAntrian(address P){
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
 	
 	FILE *FRiwayatAntrian;
 	FRiwayatAntrian = fopen("Riwayat_Antrian.txt", "a");
-
+	
 	if (FRiwayatAntrian == NULL){
         printf("TIDAK ADA FILE!");
     }else{
     	fprintf(FRiwayatAntrian, "\n\t\t\tPet Name \t: %s\n", P->info.petName);
-        fprintf(FRiwayatAntrian, "\t\t\tPriority \t: %d\n", P->info.priority);
-        fputs("\t\t\tDisease List \t: \n", FRiwayatAntrian);
+    	fprintf(FRiwayatAntrian, "\t\t\tPet Owner \t: %s\n", P->info.petOwner);
+        fprintf(FRiwayatAntrian, "\n\t\t\tPriority \t: %d\n", P->info.priority);
+        fputs("\n\t\t\tDisease List \t: \n", FRiwayatAntrian);
     	
     	//daftar penyakit
     	int i = 0;
@@ -285,12 +290,31 @@ void riwayatAntrian(address P){
 			}
 		}
 		
-	    fprintf(FRiwayatAntrian, "\t\t\tService Time\t: %02d:%02d\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+	    fprintf(FRiwayatAntrian, "\n\t\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
+	    fprintf(FRiwayatAntrian, "\n\t\t\tArrival Time\t: %02d:%02d\n", P->info.arrivalTime.HH, P->info.arrivalTime.MM);
     	fprintf(FRiwayatAntrian, "\t\t\tStart Time\t: %02d:%02d\n", P->info.startTime.HH, P->info.startTime.MM);
     	fprintf(FRiwayatAntrian, "\t\t\tFinish Time\t: %02d:%02d\n", P->info.finishTime.HH, P->info.finishTime.MM);
+    	fprintf(FRiwayatAntrian, "\n\t\t\tDate\t\t: %d %s %d\n", tm.tm_mday, convertBulan(tm.tm_mon + 1),tm.tm_year + 1900);
     	fputs("\t\t-------------------------------------------------------------------------------------------\n\n", FRiwayatAntrian);
     }
     fclose(FRiwayatAntrian);
+}
+
+char* convertBulan(int bulan){
+	switch(bulan){
+		case 1 : return "Januari";
+		case 2 : return "Februari";
+		case 3 : return "Maret";
+		case 4 : return "April";
+		case 5 : return "Mei";
+		case 6 : return "Juni";
+		case 7 : return "Juli";
+		case 8 : return "Agustus";
+		case 9 : return "September";
+		case 10 : return "Oktober";
+		case 11 : return "November";
+		case 12 : return "Desember";
+	}
 }
 
 void riwayat(){

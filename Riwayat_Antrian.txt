@@ -1,0 +1,104 @@
+
+			Pet Name 	: Parman
+			Pet Owner 	: Zaki
+
+			Priority 	: 1
+
+			Disease List 	: 
+					- Penyakit Kulit
+
+			Service Time 	: 0 Jam 15 Menit
+
+			Arrival Time	: 10:13
+			Start Time	: 10:14
+			Finish Time	: 10:29
+
+			Date		: 5 Juni 2022
+		-------------------------------------------------------------------------------------------
+
+
+			Pet Name 	: Fariz
+
+			Pet Owner 	: Rahman
+			Priority 	: 1
+			Disease List 	: 
+					- Penyakit Kulit
+			Service Time 	: 0 Jam 15 Menit
+			Arrival Time	: 10:15
+			Start Time	: 10:30
+			Finish Time	: 10:45
+			Date		: 5 Juni 2022
+		-------------------------------------------------------------------------------------------
+
+
+			Pet Name 	: Moo
+			Pet Owner 	: Sapi
+
+			Priority 	: 1
+
+			Disease List 	: 
+					- Penyakit Kulit
+
+			Service Time 	: 0 Jam 15 Menit
+
+			Arrival Time	: 10:20
+			Start Time	: 10:21
+			Finish Time	: 10:36
+
+			Date		: 5 Juni 2022
+		-------------------------------------------------------------------------------------------
+
+
+			Pet Name 	: Mbee
+			Pet Owner 	: Kambing
+
+			Priority 	: 1
+
+			Disease List 	: 
+					- Penyakit Kulit
+
+			Service Time 	: 0 Jam 15 Menit
+
+			Arrival Time	: 10:33
+			Start Time	: 10:37
+			Finish Time	: 10:52
+
+			Date		: 5 Juni 2022
+		-------------------------------------------------------------------------------------------
+
+
+			Pet Name 	: Gol
+			Pet Owner 	: Kiper
+
+			Priority 	: 1
+
+			Disease List 	: 
+					- Penyakit Kulit
+
+			Service Time 	: 0 Jam 15 Menit
+
+			Arrival Time	: 10:10
+			Start Time	: 10:11
+			Finish Time	: 10:26
+
+			Date		: 5 Juni 2022
+		-------------------------------------------------------------------------------------------
+
+
+			Pet Name 	: Gob
+			Pet Owner 	: Kiper
+
+			Priority 	: 1
+
+			Disease List 	: 
+					- Penyakit Kulit
+
+			Service Time 	: 0 Jam 15 Menit
+
+			Arrival Time	: 11:11
+			Start Time	: 11:12
+			Finish Time	: 11:27
+
+			Date		: 5 Juni 2022
+		-------------------------------------------------------------------------------------------
+

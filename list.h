@@ -68,29 +68,15 @@ Melakukan dealokasi/ pengembalian address P ke system
 //========================================================================
 /** { KELOMPOK OPERASI Cek Elemen kosong atau penuh} **/
 
-boolean isEmpty(List L);
+boolean isEmpty(List L);															//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // mengecek apakah jumlah elemen pada List kosong
 // mengirimkan true jika List kosong, mengirimkan false jika tidak
 //=========================================================================
 /** { KELOMPOK Interaksi operasi linear list, baca tulis } **/
 /**Penambahan Elemen***/
-void InsFirst (List *L, infotype X);
-/*I.S : L terdefinisi, mungkin kosong
-F.S : melakukan alokasi sebuah elemen dan
-menambahkan elemen pertama pada List dengan nilai X jika alokasi
-berhasil. Jika alokasi gagal IS = FS
-*/
-void InsLast (List * L, infotype X);
-/*I.S : L terdefinisi, mungkin kosong
-F.S : melakukan alokasi sebuah elemen dan
-menambahkan elemen terakhir pada List dengan nilai X jika alokasi
-berhasil. Jika alokasi gagal IS = FS
-*/
-void InsAfter (List * L, infotype X, infotype Y);
-/*I.S : L terdefinisi, mungkin kosong
-F.S : melakukan alokasi sebuah elemen dengan nilai x dan
-menambahkan elemen list setelah y ditemukan pertama kali pada list
-*/
+
+void insert(List *list, infotype info);
+
 /*Penghapusan Elemen*/
 void DelFirst (List * L);
 /*I.S : L tidak kosong
@@ -99,7 +85,7 @@ dan alamat elemen pertama di dealokasi. Sehingga elemen pertama pada List
 adalah elemen berikutnya sebelum penghapusan.
 */
 
-void insert(List *list, infotype info);
+
 
 
 /*Menampilkan Elemen*/
