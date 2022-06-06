@@ -6,9 +6,10 @@
 #include "list.h"
 #include "adt_time.h"
 
+
 /*
-Deskripsi : Modul untuk menginputkan spesifikasi pelanggan
-Author : Cintia Ningsih
+Deskripsi 	: Menginputkan spesifikasi pasien yang akan masuk antrian
+Author 		: Cintia Ningsih
 */
 void tambahAntrian(infotype *info){
 	char petName[20];
@@ -27,17 +28,20 @@ void tambahAntrian(infotype *info){
 	for(i; i<9 ; i++){
 		info->diseaseList[i] = 0;	
 	}
-	hitungPenyakit(&*info);
+	tambahPenyakit(&*info);
 	addTime(&*info);
 	info->priority = hitungPrioritas(*info);
 }
 
-/*
 
+/*
+Deskripsi 	: Menambahkan penyakit pada pasien
+Author 		: Mohammad Fathul'Ibad
 */
-void hitungPenyakit(infotype *info){
+void tambahPenyakit(infotype *info){
 	int banyakPenyakit;
 	int pilihan;
+	
 	printf("\t\t\t\tTotal Disease \t: ");
 	scanf("%d",&banyakPenyakit);
 
@@ -53,10 +57,13 @@ void hitungPenyakit(infotype *info){
 }
 
 
+/*
+Deskripsi 	: Menghitung prioritas pasien
+Author 		: Muhammad Zaki
+*/
 int hitungPrioritas(infotype info){
 	int prioritas = 0;
 	int i = 0;
-	
 	int ringan = 0;
 	int sedang = 0;
 	int berat = 0;
@@ -73,7 +80,6 @@ int hitungPrioritas(infotype info){
 		}
 	}
 	
-	
 	if(berat!=0){
 		prioritas = 4;
 	}
@@ -87,11 +93,14 @@ int hitungPrioritas(infotype info){
 		prioritas = 1;
 	}
 		
-	
 	return prioritas;
 }
 
 
+/*
+Deskripsi 	: Menambahkan pasien baru ke antrian
+Author 		: Mohammad Fathul'Ibad
+*/
 void antrianBaru(List *list,infotype info){
 	info.priority = hitungPrioritas(info);
 	
@@ -104,12 +113,13 @@ void antrianBaru(List *list,infotype info){
 		printf("\t\t\t\tInvalid Arrival Time !!!!!!!!!");
 		getch();
 	}
-
 }
 
 
-
-
+/*
+Deskripsi 	: Mengupdate urutan akhir dari list
+Author 		: Mohammad Fathul'Ibad
+*/
 address moveLast(List list){
 	while (list.First->next != Nil){
 		list.First = list.First->next;
@@ -119,9 +129,11 @@ address moveLast(List list){
 }
 
 
+/*
+Deskripsi 	: Menambahkan waktu service pada pasien
+Author 		: Muhammad Zaki
+*/
 void addTime(infotype *info){
-	
-
 	int time = 0;
 	int hour = 0;
 	int minute = 0;
@@ -141,8 +153,7 @@ void addTime(infotype *info){
 			berat ++;
 		}
 	}
-	
-	
+		
 	time += ringan * 15;
 	time += sedang * 30;
 	time += berat * 45;
@@ -151,9 +162,15 @@ void addTime(infotype *info){
 		info->serviceTime.HH += 1;
 		time = time - 60;
 	}
+	
 	info->serviceTime.MM += time;
 }
 
+
+/*
+Deskripsi 	: Mengupdate waktu dari antrian
+Author 		: Muhammad Zaki
+*/
 void checkTime(List *list){
     address current = list->First;
     
@@ -163,7 +180,6 @@ void checkTime(List *list){
         current->info.startTime.HH = current->info.arrivalTime.HH;
         current->info.startTime.MM = current->info.arrivalTime.MM + 1;
 
-        
         //hitung Finish Time
         current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
         current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
@@ -178,32 +194,34 @@ void checkTime(List *list){
     else {
         current = current->next;
         while (current != Nil){
-        //Hitung Start Time
-        if(JamToMenit(current->info.arrivalTime) >= JamToMenit(current->prev->info.finishTime)){
-            current->info.startTime.HH = current->info.arrivalTime.HH;
-            current->info.startTime.MM = current->info.arrivalTime.MM + 1;
-        }
-        else{
-            current->info.startTime.HH = current->prev->info.finishTime.HH;
-            current->info.startTime.MM = current->prev->info.finishTime.MM + 1;    
-        }
-        
-        
-        //Hitung Finish Time
-        
-        current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
-        current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
-        while (current->info.finishTime.MM >= 60){
-            current->info.finishTime.HH += 1;
-            current->info.finishTime.MM -= 60;
-        }
-        
-
-        current = current->next;
-    }
+	        //Hitung Start Time
+	        if(JamToMenit(current->info.arrivalTime) >= JamToMenit(current->prev->info.finishTime)){
+	            current->info.startTime.HH = current->info.arrivalTime.HH;
+	            current->info.startTime.MM = current->info.arrivalTime.MM + 1;
+	        }
+	        else{
+	            current->info.startTime.HH = current->prev->info.finishTime.HH;
+	            current->info.startTime.MM = current->prev->info.finishTime.MM + 1;    
+	        }
+	        
+	        //Hitung Finish Time
+	        current->info.finishTime.HH = current->info.startTime.HH + current->info.serviceTime.HH;
+	        current->info.finishTime.MM = current->info.startTime.MM + current->info.serviceTime.MM;
+	        while (current->info.finishTime.MM >= 60){
+	            current->info.finishTime.HH += 1;
+	            current->info.finishTime.MM -= 60;
+	        }
+	        
+	        current = current->next;
+    	}
     }
 }
 
+
+/*
+Deskripsi 	: Menampilkan daftar penyakit yang tersedia
+Author 		: Cintia Ningsih
+*/
 void daftarPenyakit(){
 	printf("\n\t\t---------------------------------|   TYPES OF DISEASES   |--------------------------------- \n");
 	printf("\t\t\tPenyakit Ringan \n");
@@ -220,6 +238,11 @@ void daftarPenyakit(){
 	printf("\t\t\t [9] Virus\n\n");
 }
 
+
+/*
+Deskripsi 	: Menampilkan daftar penyakit yang diderita oleh pasien
+Author 		: Mohammad Fathul'Ibad
+*/
 void printPenyakit(address P){
 	int i = 0;
 	
@@ -238,6 +261,11 @@ void printPenyakit(address P){
 	}
 }
 
+
+/*
+Deskripsi 	: Menampilkan pasien yang sedang diproses
+Author 		: Muhammad Zaki
+*/
 void tampilProses(List L){
 	printf("\n\t\t=============================|     PASIEN YANG DIPROSES     |============================== \n");
     	
@@ -245,10 +273,15 @@ void tampilProses(List L){
 		printf("\n\t\t\t\t\t----- TIDAK ADA PASIEN YANG DIPROSES -----\n");
 	}
 	else{
-		printf("\n\t\t\t\t      ----- Pasien Atas Nama %s Sedang Diperoses -----\n", L.First->info.petName);
+		printf("\n\t\t\t\t      ----- Pasien Atas Nama %s Sedang Diproses -----\n", L.First->info.petName);
 	}
 }
 
+
+/*
+Deskripsi 	: Menampilkan antrian berikutnya
+Author 		: Muhammad Zaki
+*/
 void tampilAntrianBerikutnya(List L){
 	printf("\n\n\t\t===============================|     PANGGIL ANTRIAN     |================================= \n");
 	if(First(L) == Nil){
@@ -259,6 +292,35 @@ void tampilAntrianBerikutnya(List L){
 	}
 }
 
+
+/*
+Deskripsi 	: Membaca file riwayat antrian
+Author 		: Cintia Ningsih
+*/
+void riwayat(){
+	printf("\n\n\t\t================================|     RIWAYAT ANTRIAN     |================================ \n");
+	
+	FILE *FRiwayatAntrian;
+	char length[6000];
+	
+	FRiwayatAntrian=fopen("Riwayat_Antrian.txt","r");
+	
+	if (FRiwayatAntrian == NULL){
+        printf("\n\t\t\t\t\t\t----- TIDAK ADA FILE! -----");
+    }else{
+		while (fgets(length,6000,FRiwayatAntrian)!=NULL){
+			printf("%s", length);
+		}
+	}
+	
+	fclose(FRiwayatAntrian);
+}
+
+
+/*
+Deskripsi 	: Mengisi file riwayat antrian
+Author 		: Cintia Ningsih
+*/
 void riwayatAntrian(address P){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
@@ -300,6 +362,11 @@ void riwayatAntrian(address P){
     fclose(FRiwayatAntrian);
 }
 
+
+/*
+Deskripsi 	: Mengkonversi bulan dalam bentuk integer menjadi string
+Author 		: Mohammad Fathul'Ibad
+*/
 char* convertBulan(int bulan){
 	switch(bulan){
 		case 1 : return "Januari";
@@ -317,25 +384,11 @@ char* convertBulan(int bulan){
 	}
 }
 
-void riwayat(){
-	printf("\n\n\t\t================================|     RIWAYAT ANTRIAN     |================================ \n");
-	
-	FILE *FRiwayatAntrian;
-	char length[6000];
-	
-	FRiwayatAntrian=fopen("Riwayat_Antrian.txt","r");
-	
-	if (FRiwayatAntrian == NULL){
-        printf("\n\t\t\t\t\t\t----- TIDAK ADA FILE! -----");
-    }else{
-		while (fgets(length,6000,FRiwayatAntrian)!=NULL){
-			printf("%s", length);
-		}
-	}
-	
-	fclose(FRiwayatAntrian);
-}
 
+/*
+Deskripsi 	: Menampilkan panduan aplikasi dari file
+Author 		: Cintia Ningsih
+*/
 void panduanAplikasi(){
 	FILE *FPanduanAplikasi;
 	char length[6000];
@@ -353,11 +406,17 @@ void panduanAplikasi(){
 	fclose(FPanduanAplikasi);
 }
 
+
+/*
+Deskripsi 	: Mengirim true apabila  arrival valid dan false apabila tidak valid
+Author 		: Mohammad Fathul’Ibad
+*/
 boolean validasiArrivalTime(List L, Jam J)
 {
 	if (L.First == Nil){
 		return true;
 	}
+	
 	address current = L.First;	
 	int maxTime = JamToMenit(current->info.arrivalTime);					
 	while (current != Nil)
