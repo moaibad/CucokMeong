@@ -1,4 +1,3 @@
-/* File : jam.h */
 
 /* spesifikasi ADT Jam */
 #ifndef adt_time_H
@@ -19,30 +18,37 @@ typedef struct
 } Jam;
 
 /***** Konstruktor ************/
+/*
+Deskripsi 	: Membentuk Jam dari H, M, S yg valid
+Author 		: Muhammad Zaki
+*/
 Jam MakeJam(int H, int M, int S);
 /* Membentuk Jam dari H, M, S yg valid */
 
 /*------------validator jam------------*/
+/*
+Deskripsi 	: Mengirim true jika H,M,S dapat membentuk Jam yang valid
+Author 		: Muhammad Zaki
+*/
 boolean IsJValid(int H, int M, int S);
-/* Mengirim true jika H,M,S dapat membentuk Jam yang valid */
 
 /*------------Baca & Tulis jam-----------*/
 
+/*
+Deskripsi 	: Membentuk Jam dari input user
+Author 		: Muhammad Zaki
+*/
 void BacaJam(Jam *J);
-/* I.S. : J tak terdefinisi * /
-/* F.S. : J terdefinisi dan merupakan jam valid */
-/* Proses : mengulang baca komponen H,M,S sehingga membentuk J
-yang valid */
 
-void TulisJam(Jam J);
-/* I.S. : J sembarang */
-/* F.S. : J ditulis ke layar dengan format HH:MM:SS */
-/* Proses : Menulis ke layar */
 
 /*----------Konversi terhadap type jam----------*/
 
+/*
+Deskripsi 	: Konversi Jam menjadi menit
+Author 		: Muhammad Zaki
+*/
 int JamToMenit(Jam J);
-/* Konversi Jam menjadi detik */
+
 
 
 #endif
