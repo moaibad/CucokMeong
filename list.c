@@ -70,11 +70,14 @@ void insert(List *list, infotype info){
 	
 	P = Alokasi(info);
 	
+	//Jika kosong maka masukan elemen sebagai first dan last
 	if(isEmpty(*list)){
 		list->First = P;
 		list->Last = P;
 	}
+	//Jika ada prioritas yang sama, tetapi yang sama tersebut bukan merupakan first
 	else if(reference != Nil && reference->info.priority != list->First->info.priority){
+		//Jika prioritas yang sama merupakan last
 		if(list->Last == reference){
 			reference->next = P;
 			P->prev = reference;
@@ -86,23 +89,29 @@ void insert(List *list, infotype info){
 			reference->next = P;		
 		}		
 	}
+	//Jika tidak ada prioritas yang sama
 	else{
+		//Jika elemen kedua tidak Nil
 		if(list->First->next != Nil){
-			if(list->First->info.priority < P->info.priority && list->First->next->info.priority < P->info.priority){
+			//Jika prioritas elemen kedua kurang dari prioritas elemen baru
+			if(list->First->next->info.priority < P->info.priority){
 				list->First->next->prev = P;
 				P->next = list->First->next;
 				P->prev = list->First;
 				list->First->next = P;
 			}
 			else{
+				//Perulangan hingga menemukan prioritas yang lebih besar pada list dari prioritas elemen baru
 				while(current->info.priority < P->info.priority){
 				current = current->prev;
 				}
+				//Jika elemen yang baru memiliki prioritas paling kecil
 				if(current == list->Last){
 					current->next = P;
 					P->prev = current;
 				}
 				else{
+					//Jika elemen baru akan dimasukan ditengah-tengah
 					current->next->prev = P;
 					P->next = current->next;
 					P->prev = current;
@@ -110,6 +119,7 @@ void insert(List *list, infotype info){
 				}	
 			}
 		}
+		//Jika di list hanya ada satu elemen
 		else{
 			list->First->next = P;
 			P->prev = list->First;
@@ -217,6 +227,10 @@ address Search (List L, int priority){
 }
 
 
+/*
+Deskripsi 	: Mencari apakah ada elemen dengan nama hewan yang sama
+Author 		: Cintia Ningsih
+*/
 address searchAntrian (List L, char* petName){
 	address P;
 	boolean Found;

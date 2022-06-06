@@ -95,5 +95,11 @@ Author : Cintia Ningsih
 */
 address Search (List L, int priority);
 
+/*
+Deskripsi 	: Mencari apakah ada elemen dengan nama hewan yang sama
+Author 		: Cintia Ningsih
+*/
+address searchAntrian (List L, char* petName);
+
 #endif
 

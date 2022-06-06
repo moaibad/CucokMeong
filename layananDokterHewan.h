@@ -86,7 +86,7 @@ void riwayatAntrian(address P);
 
 /*
 Deskripsi 	: Mengkonversi bulan dalam bentuk integer menjadi string
-Author 		: Mohammad Fathul'Ibad
+Author 		: Cintia Ningsih
 */
 char* convertBulan(int bulan);
 
