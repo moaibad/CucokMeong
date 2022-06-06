@@ -7,8 +7,11 @@
 
 /* -----------konstruktor Jam--------- */
 
+/*
+Deskripsi 	: Membentuk Jam dari H, M, S yg valid
+Author 		: Muhammad Zaki
+*/
 Jam MakeJam(int H, int M, int S)
-/* Membentuk Jam dari H, M, S yg valid */
 { 
   /* Kamus Lokal */
    Jam J1;
@@ -32,11 +35,11 @@ boolean IsJValid(int H, int M, int S)
 
 /*------------Baca & Tulis jam-----------*/
 
+/*
+Deskripsi 	: Membentuk Jam dari input user
+Author 		: Muhammad Zaki
+*/
 void BacaJam(Jam *J)
-/* I.S.   : J tak terdefinisi */
-/* F.S.   : J terdefinisi dan merupakan jam valid */
-/* Proses : mengulang baca komponen H, M, S sehingga membentuk J
-             yang valid */
 {
   /* Kamus Lokal */ 
    int H, M, S;
@@ -60,9 +63,11 @@ void TulisJam(Jam J)
 }
 
 
+/*
+Deskripsi 	: Konversi Jam menjadi menit
+Author 		: Muhammad Zaki
+*/
 int JamToMenit(Jam J)
-/* Konversi Jam menjadi detik */
-
 { 
   /* Kamus Lokal */
   /* Algoritma */
