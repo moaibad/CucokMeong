@@ -2,15 +2,21 @@
 #include <stdlib.h>
 #include "list.h"
 
-//======================================================================
-/* Prototype Linear List */
-/* Konstruktor membentuk List */
+
+/*
+Deskripsi 	: Konstruktor membentuk List
+Modified By : Mohammad Fathul'Ibad
+*/
 void CreateList (List *L){
 	First(*L) = Nil;
 	Last(*L) = Nil;
 }
 
-/* Destruktor/Dealokator: */
+
+/*
+Deskripsi 	: Mengirimkan address hasil alokasi sebuah elemen
+Modified By : Cintia Ningsih
+*/
 address Alokasi (infotype X){
 	address P;
 	
@@ -26,10 +32,20 @@ address Alokasi (infotype X){
 	}	
 }
 
+
+/*
+Deskripsi 	: Melakukan dealokasi/ pengembalian address ke system
+Modified By : Cintia Ningsih
+*/
 void DeAlokasi (address P){
 	free(P);
 }
 
+
+/*
+Deskripsi 	: Memeriksa apakah terdapat elemen pada list atau tidak
+Modified By : Muhammad Zaki
+*/
 boolean isEmpty(List L){
 
 	if(First(L)==Nil){
@@ -40,6 +56,11 @@ boolean isEmpty(List L){
 	}
 }
 
+
+/*
+Deskripsi 	: Menambahkan elemen list
+Modified By : Mohammad Fathul’Ibad
+*/
 void insert(List *list, infotype info){
 	address P;
 	address current = list->Last;
@@ -97,8 +118,12 @@ void insert(List *list, infotype info){
 	list->Last = moveLast(*list);
 }
 
-/*Penghapusan Elemen*/
-void DelFirst (List * L){
+
+/*
+Deskripsi 	: Elemen pertama List dihapus
+Author		: Cintia Ningsih
+*/
+void hapusAntrian (List * L){
 	address P;
 	P = First(*L);
 	
@@ -121,9 +146,11 @@ void DelFirst (List * L){
 }
 
 
-
-/*Menampilkan Elemen*/
-void PrintInfo (List L){
+/*
+Deskripsi 	: Menampilkan informasi antrian
+Author 		: Mohammad Fathul’Ibad
+*/
+void tampilAntrian (List L){
     address P;
     
     P = First(L);
@@ -167,12 +194,11 @@ void PrintInfo (List L){
 
 }
 
-//=========================================================================
 
-/** KELOMPOK OPERASI LAIN TERHADAP TYPE **/
-int NbElmt (List L);
-// Mengirimkan banyaknya elemen List atau mengirimkan 0 jika List kosong
-
+/*
+Deskripsi 	: Mencari apakah ada 
+Author 		: Cintia Ningsih
+*/
 address Search (List L, int priority){
 	address P;
 	boolean Found;

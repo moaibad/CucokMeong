@@ -46,65 +46,54 @@ typedef struct{
 	address First;
 	address Last;
 } List;
-//======================================================================
-/* Prototype Linear List */
-/* Konstruktor membentuk List */
-void CreateList (List *L);
-/* I.S : L terdefinisi, tidak diketahui nilainya
-F.S : L diinisialisasi first(L) = nil
+
+/*
+Deskripsi 	: Konstruktor membentuk List
+Modified By : Mohammad Fathul'Ibad
 */
-/* Destruktor/Dealokator: */
+void CreateList (List *L);
+
+/*
+Deskripsi 	: Mengirimkan address hasil alokasi sebuah elemen
+Modified By : Cintia Ningsih
+*/
 address Alokasi (infotype X);
-/*Mengirimkan address hasil alokasi sebuah elemen
-Jika alokasi berhasil, maka address !=Nil,
-dan misalnya menghasilkan P, maka Info(P)= x, Next(P)=Nil
-Jika alokasi gagal, mengirimkan Nil
+
+/*
+Deskripsi 	: Melakukan dealokasi/ pengembalian address ke system
+Modified By : Cintia Ningsih
 */
 void DeAlokasi (address P);
-/*I.S : P terdefinisi
-F.S : P dikembalikan ke sistem
-Melakukan dealokasi/ pengembalian address P ke system
+
+/*
+Deskripsi 	: Memeriksa apakah terdapat elemen pada list atau tidak
+Modified By : Muhammad Zaki
 */
-//========================================================================
-/** { KELOMPOK OPERASI Cek Elemen kosong atau penuh} **/
+boolean isEmpty(List L);
 
-boolean isEmpty(List L);															//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// mengecek apakah jumlah elemen pada List kosong
-// mengirimkan true jika List kosong, mengirimkan false jika tidak
-//=========================================================================
-/** { KELOMPOK Interaksi operasi linear list, baca tulis } **/
-/**Penambahan Elemen***/
-
+/*
+Deskripsi 	: Menambahkan elemen list
+Modified By : Mohammad Fathul’Ibad
+*/
 void insert(List *list, infotype info);
 
-/*Penghapusan Elemen*/
-void DelFirst (List * L);
-/*I.S : L tidak kosong
-F.S : Elemen pertama List dihapus, nilai info disimpan ke X
-dan alamat elemen pertama di dealokasi. Sehingga elemen pertama pada List
-adalah elemen berikutnya sebelum penghapusan.
+/*
+Deskripsi 	: Elemen pertama List dihapus
+Author		: Cintia Ningsih
 */
+void hapusAntrian (List * L);
 
-
-
-
-/*Menampilkan Elemen*/
-void PrintInfo (List L);
-/* I.S : L terdefinisi, mungkin kosong
-F.S : Jika List tidak kosong, menampilkan semua info yang disimpan pada
-elemen list ke layar. jika List kosong, hanya menampilkan pesan ?list
-kosong?
+/*
+Deskripsi 	: Menampilkan informasi antrian
+Author 		: Mohammad Fathul’Ibad
 */
+void tampilAntrian (List L);
 
-//=========================================================================
-
-/** KELOMPOK OPERASI LAIN TERHADAP TYPE **/
-
+/*
+Deskripsi 	: Mencari apakah ada 
+Author : Cintia Ningsih
+*/
 address Search (List L, int priority);
-/* Mencari apakah ada elemen list dengan Info (P)= X
-Jika ada, mengirimkan address elemen tersebut yang pertama kali ditemukan.
-jika tidak ada, mengirimkan Nil
-*/
 
 #endif
 
