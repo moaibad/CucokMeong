@@ -18,7 +18,7 @@ int main(){
 	//textGroup();
 	//loading();
 	
-	while(pilihMenu != 6){
+	while(pilihMenu != 7){
 		system("cls");
 		tampilProses(list);
 		Menu();
@@ -32,13 +32,13 @@ int main(){
 				break;
 			
 			case 2 :
-				DelFirst(&list);
+				panggilAntrian(&list);
 				tampilAntrianBerikutnya(list);
 				getch();
 				break;
 			
 			case 3 :
-				PrintInfo(list);
+				tampilAntrian(list);
 				getch();
 				system("cls");
 				break;
@@ -55,7 +55,13 @@ int main(){
 				system("cls");
 				break;
 			
-			case 6 :
+			case 6:
+				hapusAntrian(&list);
+				checkTime(&list);
+				getch();
+				break;
+				
+			case 7 :
 				return 0;
 		}
 	}
@@ -72,7 +78,8 @@ void Menu(){
 	printf("\t\t\t\t  [3] Daftar Antrian \n");
 	printf("\t\t\t\t  [4] Riwayat Antrian \n");
 	printf("\t\t\t\t  [5] Panduan Aplikasi \n");
-	printf("\t\t\t\t  [6] Exit \n\n");
+	printf("\t\t\t\t  [6] Hapus Antrian \n");
+	printf("\t\t\t\t  [7] Exit \n\n");
 	printf("\t\t\t\tMasukkan Pilihan : ");
 }
 

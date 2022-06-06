@@ -81,7 +81,7 @@ void insert(List *list, infotype info);
 Deskripsi 	: Elemen pertama List dihapus
 Author		: Cintia Ningsih
 */
-void hapusAntrian (List * L);
+void panggilAntrian (List * L);
 
 /*
 Deskripsi 	: Menampilkan informasi antrian
