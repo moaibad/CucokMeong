@@ -68,6 +68,10 @@ int main(){
 	return 0;
 }
 
+/*
+Deskripsi 	: Menampilkan menu utama
+Author 		: Cintia Ningsih
+*/
 void Menu(){
 	printf("\n\n\n");
 	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n");
@@ -83,12 +87,20 @@ void Menu(){
 	printf("\t\t\t\tMasukkan Pilihan : ");
 }
 
+/*
+Deskripsi 	: Menampilkan waktu terkini
+Author 		: Mohammad Fathul'Ibad
+*/
 void showTime(){
 	if(First(list) != Nil){
 		printf("\t\t                                |Current Time : %02d:%02d|\n\n", First(list)->info.arrivalTime.HH, First(list)->info.arrivalTime.MM);
 	}
 }
 
+/*
+Deskripsi 	: Menampilkan tampilan loading
+Author 		: Cintia Ningsih
+*/
 void loading(){
 	int i =0;
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -117,6 +129,10 @@ const char meongText[] =
 ";
 
 
+/*
+Deskripsi 	: Menampilkan tampilan text nama kelompok
+Author 		: Cintia Ningsih
+*/
 void textGroup() {
 	int i, j;
 	
