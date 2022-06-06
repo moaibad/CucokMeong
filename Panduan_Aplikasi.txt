@@ -8,10 +8,10 @@
 		cara menggunakan aplikasi :
 		[1] Akan disediakan pilihan menu, anda dapat memilih menu tersebut sesuai dengan kebutuhan
 		[2] Pilih nomer 1 untuk melakukan registrasi. Pada menu registrasi anda akan diminta untuk 
-    		    memasukkan nama hewan, waktu kedatangan (dalam bentuk jam dan menit) dan total penyakit.
-    	 	    Setelah anda memasukkan total penyakit maka akan disediakan daftar penyakit dari hewan, 
-    		    anda hanya perlu memilih jenis penyakit sesuai dengan banyak penyakit yang diderita oleh 
-    		    hewan.
+    		    memasukkan nama hewan, nama pemilik hewan, waktu kedatangan (dalam bentuk jam dan menit) 
+		    dan total penyakit. Setelah anda memasukkan total penyakit maka akan disediakan daftar 
+		    penyakit dari hewan,anda hanya perlu memilih jenis penyakit sesuai dengan banyak penyakit 
+		    yang diderita oleh hewan.
 		[3] Pilih nomer 2 untuk memanggil antrian.Pada menu ini, akan di tampilkan nama antrian
     		    selanjutnya untuk dilakukan pemeriksaan.
 		[4] Pilih nomer 3 untuk melihat daftar antrian. Pada menu ini, akan di tampilkan daftar dari
@@ -23,5 +23,7 @@
     		    keseluruhan.
 		[6] Pilih nomer 5 untuk melihat panduan aplikasi. Pada menu ini akan di tampilkan cara
     		    menggunakan Aplikasi Layanan Dokter Hewan Cucok Meong.
-		[7] Pilih nomer 6 untuk keluar dari Aplikasi Layanan Dokter Hewan Cucok Meong.
+		[7] Pilih nomer 6 untuk menghapus antrian. Pada menu ini pasien dapat dihapus dari antrian.
+		    anda hanya perlu memasukkan nama hewan yang ingin dihapus dari antrian.
+		[8] Pilih nomer 7 untuk keluar dari Aplikasi Layanan Dokter Hewan Cucok Meong.
 

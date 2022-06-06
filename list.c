@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
 
@@ -123,7 +124,7 @@ void insert(List *list, infotype info){
 Deskripsi 	: Elemen pertama List dihapus
 Author		: Cintia Ningsih
 */
-void hapusAntrian (List * L){
+void panggilAntrian (List * L){
 	address P;
 	P = First(*L);
 	
@@ -154,7 +155,6 @@ void tampilAntrian (List L){
     address P;
     
     P = First(L);
-    //printf("\n\n\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n\n");
     printf("\n\n\t\t=================================|     DAFTAR ANTRIAN     |================================ \n");
     if (P == Nil) {
     	printf("\n\t\t\t\t\t\t----- TIDAK ADA ANTRIAN -----\n");
@@ -196,7 +196,7 @@ void tampilAntrian (List L){
 
 
 /*
-Deskripsi 	: Mencari apakah ada 
+Deskripsi 	: Mencari apakah ada elemen dengan prioritas yang sama
 Author 		: Cintia Ningsih
 */
 address Search (List L, int priority){
@@ -216,6 +216,60 @@ address Search (List L, int priority){
 	return P;
 }
 
+
+address searchAntrian (List L, char* petName){
+	address P;
+	boolean Found;
+
+	P = Last(L);
+	Found = false;
+	while((P != Nil) && (Found == false)){
+		if (strcmp(petName,P->info.petName) == 0){
+			Found = true;
+		}else {
+
+			P = Prev(P);
+		}
+	}
+	
+	return P;
+}
+
+
+void hapusAntrian(List *L){
+	char petName[20];
+	printf("\n\n\t\t=================================|     HAPUS ANTRIAN     |================================= \n\n\n");
+	printf("\t\t\t\tNama pasien \t: ");
+	scanf(" %[^\n]s",&petName);
+	address P = searchAntrian(*L,petName);
+	//printf("%s",P->info.petName);
+	
+	if(P == Nil){
+		printf("\n\t\t\t\t    ----- Tidak Ada Pasien Atas Nama %s Dalam Antrian -----",petName);
+	}
+	else{
+		if(P != First(*L)){
+			if(P == Last(*L)){
+				Last(*L) = P->prev;
+				Next(Last(*L)) = Nil;
+				P->next = Nil;
+				P->prev = Nil;
+				DeAlokasi(P);
+			}
+			else{
+				P->prev->next = P->next;
+				P->next->prev = P->prev;
+				P->next = Nil;
+				P->prev = Nil;
+				DeAlokasi(P);
+			}
+			printf("\n\t\t\t\t----- Pasien Atas Nama %s Berhasil Dihapus Dalam Antrian -----",petName);
+		}
+		else{
+			printf("\n\t\t\t\t    ----- Tidak Ada Pasien Atas Nama %s Dalam Antrian -----",petName);
+		}
+	}
+}
 
 
 

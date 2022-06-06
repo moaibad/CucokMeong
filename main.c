@@ -7,21 +7,20 @@
 void Menu();
 void textGroup();
 void loading();
+void showTime();
 List list;
 
-
 int main(){
-
 	infotype info;
 	int pilihMenu;
 	CreateList(&list);
-	//textGroup();
-	//loading();
+	textGroup();
+	loading();
 	
-	while(pilihMenu != 6){
+	while(pilihMenu != 7){
 		system("cls");
 		tampilProses(list);
-		Menu();
+		Menu(list);
 		scanf("%d",&pilihMenu);
 
 		switch(pilihMenu){
@@ -32,13 +31,13 @@ int main(){
 				break;
 			
 			case 2 :
-				DelFirst(&list);
+				panggilAntrian(&list);
 				tampilAntrianBerikutnya(list);
 				getch();
 				break;
 			
 			case 3 :
-				PrintInfo(list);
+				tampilAntrian(list);
 				getch();
 				system("cls");
 				break;
@@ -55,7 +54,13 @@ int main(){
 				system("cls");
 				break;
 			
-			case 6 :
+			case 6:
+				hapusAntrian(&list);
+				checkTime(&list);
+				getch();
+				break;
+				
+			case 7 :
 				return 0;
 		}
 	}
@@ -65,15 +70,23 @@ int main(){
 
 void Menu(){
 	printf("\n\n\n");
-	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n\n");
+	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n");
+	showTime();
 	printf("\t\t\t\tPilih Menu Di bawah ini : \n");
 	printf("\t\t\t\t  [1] Registrasi \n");
 	printf("\t\t\t\t  [2] Panggil Antrian \n");
 	printf("\t\t\t\t  [3] Daftar Antrian \n");
 	printf("\t\t\t\t  [4] Riwayat Antrian \n");
 	printf("\t\t\t\t  [5] Panduan Aplikasi \n");
-	printf("\t\t\t\t  [6] Exit \n\n");
+	printf("\t\t\t\t  [6] Hapus Antrian \n");
+	printf("\t\t\t\t  [7] Exit \n\n");
 	printf("\t\t\t\tMasukkan Pilihan : ");
+}
+
+void showTime(){
+	if(First(list) != Nil){
+		printf("\t\t                                |Current Time : %02d:%02d|\n\n", First(list)->info.arrivalTime.HH, First(list)->info.arrivalTime.MM);
+	}
 }
 
 void loading(){

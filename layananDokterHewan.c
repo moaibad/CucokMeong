@@ -108,10 +108,10 @@ void antrianBaru(List *list,infotype info){
 	if (validasiArrivalTime(*list,info.arrivalTime)){
 		insert(&*list, info);
 		checkTime(&*list);
+		printf("\n\t\t\t\t--- Pasien %s berhasil ditambahkan ke antrian ---",info.petName);
 	}
 	else {
-		printf("\t\t\t\tInvalid Arrival Time !!!!!!!!!");
-		getch();
+		printf("\n\t\t--- Pasien %s tidak berhasil dimasukan ke antrian karena waktu kedatangan tidak sesuai! ---",info.petName);
 	}
 }
 
