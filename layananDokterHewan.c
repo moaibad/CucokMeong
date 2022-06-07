@@ -20,7 +20,6 @@ void tambahAntrian(infotype *info){
 	scanf(" %[^\n]s",&info->petName);
 	printf("\t\t\t\tPet Owner \t: ");
 	scanf(" %[^\n]s",&info->petOwner);
-	printf("\t\t\t\tArrival Time");
 	BacaJam(&info->arrivalTime);
 	info->startTime = MakeJam(0,0,0);
 	info->finishTime = MakeJam(0,0,0);
@@ -42,7 +41,7 @@ void tambahPenyakit(infotype *info){
 	int banyakPenyakit;
 	int pilihan;
 	
-	printf("\t\t\t\tTotal Disease \t: ");
+	printf("\n\t\t\t\tTotal Disease \t: ");
 	scanf("%d",&banyakPenyakit);
 
 	int i = 0;
@@ -105,14 +104,14 @@ void antrianBaru(List *list,infotype info){
 	info.priority = hitungPrioritas(info);
 	
 	// Memvalidasi waktu kedatangan baru
-	if (validasiArrivalTime(*list,info.arrivalTime)){
+	//if (validasiArrivalTime(*list,info.arrivalTime)){
 		insert(&*list, info);
 		checkTime(&*list);
 		printf("\n\t\t\t\t--- Pasien %s berhasil ditambahkan ke antrian ---",info.petName);
-	}
-	else {
-		printf("\n\t\t--- Pasien %s tidak berhasil dimasukan ke antrian karena waktu kedatangan tidak sesuai! ---",info.petName);
-	}
+	//}
+	//else {
+		//printf("\n\t\t--- Pasien %s tidak berhasil dimasukan ke antrian karena waktu kedatangan tidak sesuai! ---",info.petName);
+	//}
 }
 
 
@@ -274,6 +273,9 @@ void tampilProses(List L){
 	}
 	else{
 		printf("\n\t\t\t\t      ----- Pasien Atas Nama %s Sedang Diproses -----\n", L.First->info.petName);
+
+	    printf("\n\t\t\t\t\t    Estimasi Waktu   :  %02d:%02d - %02d:%02d\n", L.First->info.arrivalTime.HH, L.First->info.arrivalTime.MM,L.First->info.finishTime.HH,L.First->info.finishTime.MM);
+
 	}
 }
 
@@ -298,7 +300,7 @@ Deskripsi 	: Membaca file riwayat antrian
 Author 		: Cintia Ningsih
 */
 void riwayat(){
-	printf("\n\n\t\t================================|     RIWAYAT ANTRIAN     |================================ \n");
+	printf("\n\n\t\t================================|     LAPORAN PASIEN     |================================ \n");
 	
 	FILE *FRiwayatAntrian;
 	char length[6000];
@@ -411,30 +413,31 @@ void panduanAplikasi(){
 Deskripsi 	: Mengirim true apabila  arrival valid dan false apabila tidak valid
 Author 		: Mohammad Fathul’Ibad
 */
-boolean validasiArrivalTime(List L, Jam J)
-{
-	if (L.First == Nil){
-		return true;
-	}
-	
-	address current = L.First;	
-	int maxTime = JamToMenit(current->info.arrivalTime);					
-	while (current != Nil)
-	{
-		if (JamToMenit(current->info.arrivalTime) >= maxTime)
-		{
-			maxTime = JamToMenit(current->info.arrivalTime);
-		}
-		current = current->next;
-	}
 
-	if (maxTime < JamToMenit(J))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+//boolean validasiArrivalTime(List L, Jam J)
+//{
+//	if (L.First == Nil){
+//		return true;
+//	}
+//	
+//	address current = L.First;	
+//	int maxTime = JamToMenit(current->info.arrivalTime);					
+//	while (current != Nil)
+//	{
+//		if (JamToMenit(current->info.arrivalTime) >= maxTime)
+//		{
+//			maxTime = JamToMenit(current->info.arrivalTime);
+//		}
+//		current = current->next;
+//	}
+//
+//	if (maxTime < JamToMenit(J))
+//	{
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
 

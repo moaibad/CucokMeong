@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "list.h"
 #include "layananDokterHewan.h"
 
@@ -14,8 +15,8 @@ int main(){
 	infotype info;
 	int pilihMenu;
 	CreateList(&list);
-	textGroup();
-	loading();
+	//textGroup();
+	//loading();
 	
 	while(pilihMenu != 7){
 		system("cls");
@@ -72,10 +73,10 @@ int main(){
 Deskripsi 	: Menampilkan menu utama
 Author 		: Cintia Ningsih
 */
-void Menu(){
+void Menu(List L){
 	printf("\n\n\n");
 	printf("\t\t=========================|     APLIKASI LAYANAN DOKTER HEWAN     |========================= \n\n");
-	showTime();
+	showTime(L);
 	printf("\t\t\t\tPilih Menu Di bawah ini : \n");
 	printf("\t\t\t\t  [1] Registrasi \n");
 	printf("\t\t\t\t  [2] Panggil Antrian \n");
@@ -91,10 +92,16 @@ void Menu(){
 Deskripsi 	: Menampilkan waktu terkini
 Author 		: Mohammad Fathul'Ibad
 */
-void showTime(){
-	if(First(list) != Nil){
-		printf("\t\t                                |Current Time : %02d:%02d|\n\n", First(list)->info.arrivalTime.HH, First(list)->info.arrivalTime.MM);
-	}
+void showTime(List L){
+	
+	if(First(L) != Nil){
+		time_t seconds;
+	    struct tm *timeStruct;
+	    seconds = time(NULL);
+	    timeStruct = localtime(&seconds);
+	    
+    	printf("\t\t                                |Current Time : %02d:%02d|\n\n", timeStruct->tm_hour, timeStruct->tm_min, timeStruct->tm_sec);
+		}
 }
 
 /*

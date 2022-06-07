@@ -1,8 +1,8 @@
-/* File : jam.c */
 
 /* Body ADT Jam */
 
 #include "adt_time.h"
+#include <time.h>
 
 
 /* -----------konstruktor Jam--------- */
@@ -41,13 +41,19 @@ Author 		: Muhammad Zaki
 */
 void BacaJam(Jam *J)
 {
+	
+	time_t seconds;
+    struct tm *timeStruct;
+    seconds = time(NULL);
+    timeStruct = localtime(&seconds);
+
   /* Kamus Lokal */ 
    int H, M, S;
   /* Algoritma */
-   do {
-       printf("\n\t\t\t\tEnter Hour \t: ");scanf("%d",&H);
-       printf("\t\t\t\tEnter Minute \t: ");scanf("%d",&M);
-      } while(!IsJValid(H,M,S));
+   		
+		H = timeStruct->tm_hour;
+		M = timeStruct->tm_min;
+		
    *J = MakeJam(H,M,S);
 }
 

@@ -76,11 +76,11 @@ void insert(List *list, infotype info){
 		list->Last = P;
 	}
 	//Jika ada prioritas yang sama, tetapi yang sama tersebut bukan merupakan first
-	else if(reference != Nil && reference->info.priority != list->First->info.priority){
+	else if(reference != Nil && reference->info.priority != list->First->info.priority){ 
 		//Jika prioritas yang sama merupakan last
 		if(list->Last == reference){
 			reference->next = P;
-			P->prev = reference;
+			P->prev = reference;					
 		}
 		else{
 			reference->next->prev = P;
@@ -105,7 +105,7 @@ void insert(List *list, infotype info){
 				while(current->info.priority < P->info.priority){
 				current = current->prev;
 				}
-				//Jika elemen yang baru memiliki prioritas paling kecil
+				//Jika elemen yang baru memiliki prioritas paling kecil 
 				if(current == list->Last){
 					current->next = P;
 					P->prev = current;
@@ -178,7 +178,7 @@ void tampilAntrian (List L){
 	        	printPenyakit(P);
 	        	printf("\n\t\t\tService Time \t: %d Jam %d Menit\n", P->info.serviceTime.HH, P->info.serviceTime.MM);
 	        	printf("\n\t\t\tArrival Time\t: %02d:%02d\n", P->info.arrivalTime.HH, P->info.arrivalTime.MM);
-	        	printf("\t\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
+	       		printf("\t\t\tStart Time \t: %02d:%02d \n", P->info.startTime.HH, P->info.startTime.MM);
 	        	printf("\t\t\tFinish Time \t: %02d:%02d \n", P->info.finishTime.HH, P->info.finishTime.MM);
 	        	printf("\t\t-------------------------------------------------------------------------------------------\n\n");
 			  }
