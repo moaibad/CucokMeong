@@ -103,15 +103,9 @@ Author 		: Mohammad Fathul'Ibad
 void antrianBaru(List *list,infotype info){
 	info.priority = hitungPrioritas(info);
 	
-	// Memvalidasi waktu kedatangan baru
-	//if (validasiArrivalTime(*list,info.arrivalTime)){
 		insert(&*list, info);
 		checkTime(&*list);
 		printf("\n\t\t\t\t--- Pasien %s berhasil ditambahkan ke antrian ---",info.petName);
-	//}
-	//else {
-		//printf("\n\t\t--- Pasien %s tidak berhasil dimasukan ke antrian karena waktu kedatangan tidak sesuai! ---",info.petName);
-	//}
 }
 
 
@@ -408,36 +402,4 @@ void panduanAplikasi(){
 	fclose(FPanduanAplikasi);
 }
 
-
-/*
-Deskripsi 	: Mengirim true apabila  arrival valid dan false apabila tidak valid
-Author 		: Mohammad Fathul’Ibad
-*/
-
-//boolean validasiArrivalTime(List L, Jam J)
-//{
-//	if (L.First == Nil){
-//		return true;
-//	}
-//	
-//	address current = L.First;	
-//	int maxTime = JamToMenit(current->info.arrivalTime);					
-//	while (current != Nil)
-//	{
-//		if (JamToMenit(current->info.arrivalTime) >= maxTime)
-//		{
-//			maxTime = JamToMenit(current->info.arrivalTime);
-//		}
-//		current = current->next;
-//	}
-//
-//	if (maxTime < JamToMenit(J))
-//	{
-//		return true;
-//	}
-//	else
-//	{
-//		return false;
-//	}
-//}
 

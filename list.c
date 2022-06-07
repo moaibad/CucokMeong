@@ -60,7 +60,7 @@ boolean isEmpty(List L){
 
 /*
 Deskripsi 	: Menambahkan elemen list
-Modified By : Mohammad Fathul’Ibad
+Modified By : Mohammad Fathulï¿½Ibad
 */
 void insert(List *list, infotype info){
 	address P;
@@ -159,7 +159,7 @@ void panggilAntrian (List * L){
 
 /*
 Deskripsi 	: Menampilkan informasi antrian
-Author 		: Mohammad Fathul’Ibad
+Author 		: Mohammad Fathulï¿½Ibad
 */
 void tampilAntrian (List L){
     address P;
@@ -256,7 +256,6 @@ void hapusAntrian(List *L){
 	printf("\t\t\t\tNama pasien \t: ");
 	scanf(" %[^\n]s",&petName);
 	address P = searchAntrian(*L,petName);
-	//printf("%s",P->info.petName);
 	
 	if(P == Nil){
 		printf("\n\t\t\t\t    ----- Tidak Ada Pasien Atas Nama %s Dalam Antrian -----",petName);

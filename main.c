@@ -15,8 +15,8 @@ int main(){
 	infotype info;
 	int pilihMenu;
 	CreateList(&list);
-	//textGroup();
-	//loading();
+	textGroup();
+	loading();
 	
 	while(pilihMenu != 7){
 		system("cls");

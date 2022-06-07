@@ -22,17 +22,6 @@ Jam MakeJam(int H, int M, int S)
    return J1;
 }
 
-/*------------validator Jam------------*/
-
-boolean IsJValid(int H, int M, int S)
-/* Mengirim true jika H,M,S dapat membentuk Jam yang valid */
-
-{
-  /* Kamus Lokal */
-  /* Algoritma */
-   return ((H >= 0 && H <= 23) && (M >= 0 && M <= 59) && (S >= 0 && S <= 59));
-}
-
 /*------------Baca & Tulis jam-----------*/
 
 /*

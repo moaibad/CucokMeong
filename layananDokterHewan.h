@@ -96,10 +96,5 @@ Author 		: Cintia Ningsih
 */
 void panduanAplikasi();
 
-/*
-Deskripsi 	: Mengirim true apabila  arrival valid dan false apabila tidak valid
-Author 		: Mohammad Fathul’Ibad
-*/
-boolean validasiArrivalTime(List L,Jam J);
 
 #endif

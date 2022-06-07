@@ -25,12 +25,6 @@ Author 		: Muhammad Zaki
 Jam MakeJam(int H, int M, int S);
 /* Membentuk Jam dari H, M, S yg valid */
 
-/*------------validator jam------------*/
-/*
-Deskripsi 	: Mengirim true jika H,M,S dapat membentuk Jam yang valid
-Author 		: Muhammad Zaki
-*/
-boolean IsJValid(int H, int M, int S);
 
 /*------------Baca & Tulis jam-----------*/
 
